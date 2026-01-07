@@ -3,8 +3,10 @@ const skillsContainer = document.getElementById('skillsContainer');
 const toolsContainer = document.getElementById('toolsContainer');
 const experienceContainer = document.getElementById('experienceContainer');
 const projectsContainer = document.getElementById("projectsContainer");
+const toggleExperienceBtn = document.getElementById('toggleExperience');
+const toggleProjectsBtn = document.getElementById('toggleProjects');
 
-// variables
+// data
 const technologies = [
     // Frontend
     { name: 'HTML5', icon: 'assets/svg/html-svgrepo-com.svg', color: '#E34F26' },
@@ -177,66 +179,126 @@ const projects = [
 
 const categories = [...new Set(projects.map(p => p.category))];
 
-// initialization
-document.addEventListener("DOMContentLoaded", () => {
-    
+const renderSkills = () => {
     skillsContainer.innerHTML = technologies
         .map(skill => `
-            <div class="skill-card">
-                <div class="glow" style="background: ${skill.color};"></div>
-                <div class="content">
-                    <img src="${skill.icon}" alt="${skill.name}" />
-                    <p>${skill.name}</p>
-                </div>
-            </div>
-        `)
-        .join('');
+            <div class="skill-card"> 
+                <div class="glow" style="background: ${skill.color};"></div> 
+                <div class="content"> 
+                    <img src="${skill.icon}" alt="${skill.name}" /> 
+                    <p>${skill.name}</p> 
+                </div> 
+            </div> 
+        `).join(''); 
+}
 
-    toolsContainer.innerHTML = tools
+const renderTools = () => {
+    toolsContainer.innerHTML = tools 
         .map(tool => `
-            <div class="skill-card">
-                <div class="glow" style="background: ${tool.color};"></div>
-                <div class="content">
-                    <img src="${tool.icon}" alt="${tool.name}" />
-                    <p>${tool.name}</p>
+            <div class="skill-card"> 
+                <div class="glow" style="background: ${tool.color};"></div> 
+                <div class="content"> 
+                    <img src="${tool.icon}" alt="${tool.name}" /> 
+                    <p>${tool.name}</p> 
                 </div>
-            </div>
-        `)
-        .join('');
+            </div> 
+        `).join('');
+}
 
-    
-    experienceContainer.innerHTML = experiences
-        .map(experience => `
-            <div class="timeline-item">
-                <h3>${experience.event}</h3>
-                <div class="position">${experience.position}</div>
-                <div class="area">${experience.skillArea}</div>
-                <div class="date">${experience.duration}</div>
-                <p>${experience.description}</p>
-            </div>
-        `)
-        .join('');
+// EXPERIENCE LOGIC
+let experienceExpanded = false;
 
-    projectsContainer.innerHTML = categories
-        .map(category => {
-            const projectsInCategory = projects.filter(p => p.category === category);
-            return `
-                <div class="project-category">
-                    <h3>${category}</h3>
-                    <div class="category-column">
-                        ${projectsInCategory.map(p => `
-                            <div class="project-card">
-                                <img src="${p.image}" alt="${p.name}" class="project-image"/>
-                                <h3>${p.name}</h3>
-                                <p>${p.description}</p>
-                                <div class="project-tags">
-                                    ${p.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                                </div>
+const getInitialExperienceCount = () => {
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 1024) return 2;
+    return 3;
+}
+
+let experienceVisibleCount = getInitialExperienceCount();
+
+const renderExperiences = () => {
+    const visibleExperiences = experienceExpanded
+        ? experiences
+        : experiences.slice(0, experienceVisibleCount);
+
+    experienceContainer.innerHTML = visibleExperiences.map(exp => `
+        <div class="timeline-item">
+            <h3>${exp.event}</h3>
+            <div class="position">${exp.position}</div>
+            <div class="area">${exp.skillArea}</div>
+            <div class="date">${exp.duration}</div>
+            <p>${exp.description}</p>
+        </div>
+    `).join('');
+
+    toggleExperienceBtn.textContent = experienceExpanded
+        ? 'Show less'
+        : 'Show more';
+
+    toggleExperienceBtn.style.display =
+        experiences.length <= experienceVisibleCount ? 'none' : 'inline-block';
+}
+
+// PROJECTS LOGIC
+let projectsExpanded = false;
+const INITIAL_PROJECT_COUNT = 2;
+
+const renderProjects = () => {
+    const visibleProjects = projectsExpanded
+        ? projects
+        : projects.slice(0, INITIAL_PROJECT_COUNT);
+
+    const categories = [...new Set(visibleProjects.map(p => p.category))];
+
+    projectsContainer.innerHTML = categories.map(category => {
+        const projectsInCategory = visibleProjects.filter(p => p.category === category);
+
+        return `
+            <div class="project-category">
+                <h3>${category}</h3>
+                <div class="category-column">
+                    ${projectsInCategory.map(p => `
+                        <div class="project-card">
+                            <img src="${p.image}" alt="${p.name}" class="project-image">
+                            <h3>${p.name}</h3>
+                            <p>${p.description}</p>
+                            <div class="project-tags">
+                                ${p.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                             </div>
-                        `).join('')}
-                    </div>
+                        </div>
+                    `).join('')}
                 </div>
-            `;
-        }).join('');
+            </div>
+        `;
+    }).join('');
 
+    toggleProjectsBtn.textContent = projectsExpanded
+        ? 'Show less'
+        : 'Show more';
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded', () => {
+    renderSkills();
+    renderTools();
+    renderExperiences();
+    renderProjects();
+});
+
+window.addEventListener('resize', () => {
+    if (!experienceExpanded) {
+        experienceVisibleCount = getInitialExperienceCount();
+        renderExperiences();
+    }
+});
+
+// BUTTON EVENTS
+toggleExperienceBtn.addEventListener('click', () => {
+    experienceExpanded = !experienceExpanded;
+    renderExperiences();
+});
+
+toggleProjectsBtn.addEventListener('click', () => {
+    projectsExpanded = !projectsExpanded;
+    renderProjects();
 });
