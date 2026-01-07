@@ -1,0 +1,165 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+}
+
+.wrapper {
+    width: 200px;
+    height: 200px;
+    background-color: #18193A;
+    position: relative;
+}
+
+.square {
+    /* width: 15px;
+    height: 75px;
+    background-color: #3CEFFF; */
+    position: absolute;
+}
+
+.uno {
+    width: 15px;
+    height: 100px;
+    background-color: #3CEFFF;
+    top: 55px;
+    left: 60px;
+    animation: uno 1s linear infinite;
+}
+
+@keyframes uno {
+    0% {
+        height: 100px;
+        top: 55px
+    }
+
+    25% {
+        height: 75px;
+        top: 65px;
+    }
+
+    50% {
+        height: 50px;
+        top: 77px;
+    }
+
+    75% {
+        height: 25px;
+        top: 90px;
+    }
+
+    100% {
+        height: 100px;
+        top: 55px;
+    }
+
+}
+
+.dos {
+    width: 15px;
+    height: 75px;
+    background-color: #3CEFFF;
+    top: 65px;
+    left: 80px;
+    animation: dos 1s linear infinite;
+}
+
+@keyframes dos {
+    0% {
+        height: 75px;
+        top: 65px;
+    }
+
+    25% {
+        height: 50px;
+        top: 77px;
+    }
+
+    50% {
+        height: 25px;
+        top: 90px;
+    }
+
+    75% {
+        height: 75px;
+        top: 60px
+    }
+
+    100% {
+        height: 75px;
+        top: 65px;
+    }
+}
+
+.tres {
+    width: 15px;
+    height: 50px;
+    background-color: #3CEFFF;
+    top: 77px;
+    left: 100px;
+    animation: tres 1s linear infinite;
+}
+
+@keyframes tres {
+    0% {
+        height: 50px;
+        top: 77px;
+    }
+
+    25% {
+        height: 25px;
+        top: 90px;
+    }
+
+    50% {
+        height: 75px;
+        top: 60px;
+    }
+
+    75% {
+        height: 75px;
+        top: 65px;
+    }
+
+    100% {
+        height: 50px;
+        top: 77px;
+    }
+}
+
+.quatro {
+    width: 15px;
+    height: 25px;
+    background-color: #3CEFFF;
+    top: 90px;
+    left: 120px;
+    animation: quatro 1s linear infinite;
+}
+
+@keyframes quatro {
+    0% {
+        height: 25px;
+        top: 90px;
+    }
+
+    25% {
+        height: 75px;
+        top: 60px;
+    }
+
+    50% {
+        height: 75px;
+        top: 65px;
+    }
+
+    75% {
+        height: 50px;
+        top: 77px;
+    }
+
+    100% {
+        height: 25px;
+        top: 90px;
+    }
+}

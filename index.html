@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Portfolio webpage.">
+    <meta name="author" content="Joshi Angelo Z. Adlawan">
+    <link rel="stylesheet" href="styles.css">
+    <title>Joshi Adlawan</title>
+    
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#hero" class="logo">@joshiangelo</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="scrub-container">
+        <section id="hero">
+            <div class="content-wrapper">
+                <div class="hero-content">
+                    <h1>Hello, I'm Joshi Angelo Adlawan</h1>
+                    <p>Full Stack Developer & Creative Technologist</p>
+                    <a href="#projects" class="cta-button">View Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="content-wrapper">
+                <div class="about-content">
+                    <h2>About Me</h2>
+                    <div class="about-text">
+                        <p>I'm a passionate developer with a love for creating beautiful, functional, and user-centered digital experiences. With expertise in modern web technologies, I transform ideas into elegant solutions that make a difference.</p>
+                        <p style="margin-top: 1rem;">When I'm not coding, you can find me exploring new technologies, contributing to open source, or sharing knowledge with the developer community.</p>
+                    </div>
+
+                    <h2 style="margin-top: 3rem;">Technology Stack</h2>
+
+                    <!-- Technologies -->
+                    <h3 style="margin-top: 2rem;">Technologies</h3>
+                    <div class="skills" id="skillsContainer"></div>
+
+                    <!-- Tools & Editor -->
+                    <h3 style="margin-top: 2rem;">Tools & Editor</h3>
+                    <div class="skills" id="toolsContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="content-wrapper">
+                <div class="experience-content">
+                    <h2>Experience</h2>
+
+                    <!-- dynamically rendered on js -->
+                    <div class="timeline" id="experienceContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="content-wrapper">
+                <div class="projects-content">
+                    <h2>Featured Projects</h2>
+
+                    <!-- dynamically rendered on js -->
+                    <div class="projects-grid" id="projectsContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="content-wrapper">
+                <div class="contact-content">
+                    <h2>Let's Connect</h2>
+                    <p>I'm always interested in hearing about new projects and opportunities.</p>
+                    <div class="contact-links">
+                        <a href="mailto:your.email@example.com" class="contact-link">Email Me</a>
+                        <a href="https://github.com" target="_blank" class="contact-link">GitHub</a>
+                        <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn</a>
+                        <a href="https://twitter.com" target="_blank" class="contact-link">Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <button id="scrollToTopBtn" title="Scroll to top">
+        <img src="assets/svg/up-arrow-svgrepo-com.svg" alt="Up Arrow" width="20">
+    </button>
+
+    <script src="render.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
