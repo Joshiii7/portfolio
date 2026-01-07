@@ -8,7 +8,7 @@ const mainNav = document.getElementById('mainNav');
 // variables
 let cols = 0;
 let rows = 0;
-const boxSize = 30;
+const boxSize = 35;
 let trail = [];
 const maxTrail = 20;
 
@@ -95,8 +95,11 @@ scrollToTopBtn.addEventListener('click', () => {
 });
 
 function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    const hero = document.getElementById('hero');
+    const rect = hero.getBoundingClientRect();
+
+    canvas.width = rect.width;
+    canvas.height = rect.height;
 
     cols = Math.ceil(canvas.width / boxSize);
     rows = Math.ceil(canvas.height / boxSize);
