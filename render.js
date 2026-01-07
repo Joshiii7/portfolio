@@ -177,8 +177,6 @@ const projects = [
     },
 ];
 
-const categories = [...new Set(projects.map(p => p.category))];
-
 const renderSkills = () => {
     skillsContainer.innerHTML = technologies
         .map(skill => `
@@ -241,12 +239,19 @@ const renderExperiences = () => {
 
 // PROJECTS LOGIC
 let projectsExpanded = false;
-const INITIAL_PROJECT_COUNT = 2;
+
+const getInitialProjectCount = () => {
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 1024) return 2;
+    return 3;
+};
+
+let projectVisibleCount = getInitialProjectCount();
 
 const renderProjects = () => {
     const visibleProjects = projectsExpanded
         ? projects
-        : projects.slice(0, INITIAL_PROJECT_COUNT);
+        : projects.slice(0, projectVisibleCount);
 
     const categories = [...new Set(visibleProjects.map(p => p.category))];
 
@@ -272,10 +277,8 @@ const renderProjects = () => {
         `;
     }).join('');
 
-    toggleProjectsBtn.textContent = projectsExpanded
-        ? 'Show less'
-        : 'Show more';
-}
+    toggleProjectsBtn.textContent = projectsExpanded ? 'Show less' : 'Show more';
+};
 
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
