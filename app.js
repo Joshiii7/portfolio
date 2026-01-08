@@ -5,7 +5,11 @@ const ctx = canvas.getContext('2d');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mainNav = document.getElementById('mainNav');
 
+const header = document.querySelector('header');
+const aboutSection = document.getElementById('about');
+
 // variables
+const visibleWrappers = new Set();
 let cols = 0;
 let rows = 0;
 const boxSize = 35;
@@ -23,9 +27,27 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            visibleWrappers.add(entry.target);
+        } else {
+            visibleWrappers.delete(entry.target);
         }
     });
+
+    console.log(visibleWrappers);
+    header.classList.toggle('is-transparent', visibleWrappers.size > 0);
 }, observerOptions);
+
+const headerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            header.classList.add('is-transparent');
+        } else {
+            header.classList.remove('is-transparent');
+        }
+    });
+});
+
+headerObserver.observe(aboutSection);
 
 document.querySelectorAll('.content-wrapper').forEach(wrapper => {
     observer.observe(wrapper);
