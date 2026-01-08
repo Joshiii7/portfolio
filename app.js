@@ -33,21 +33,8 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 
-    console.log(visibleWrappers);
     header.classList.toggle('is-transparent', visibleWrappers.size > 0);
 }, observerOptions);
-
-const headerObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            header.classList.add('is-transparent');
-        } else {
-            header.classList.remove('is-transparent');
-        }
-    });
-});
-
-headerObserver.observe(aboutSection);
 
 document.querySelectorAll('.content-wrapper').forEach(wrapper => {
     observer.observe(wrapper);
@@ -56,8 +43,10 @@ document.querySelectorAll('.content-wrapper').forEach(wrapper => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'

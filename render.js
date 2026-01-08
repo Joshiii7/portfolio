@@ -121,10 +121,10 @@ const experiences = [
 const projects = [
     {
         category: "Application Projects",
-        name: "E-Commerce Platform",
-        description: "A full-featured online shopping platform with real-time inventory management, payment processing, and personalized recommendations.",
-        tags: ["React", "Node.js", "MongoDB"],
-        image: "images/ecommerce.png"
+        name: "Orlando Majestic Rides",
+        description: "A premium luxury transportation website showcasing chauffeur-driven services, vehicle fleets, and seamless booking for airport transfers, events, and private travel.",
+        tags: ["HTML", "CSS", "Responsive"],
+        image: "assets/images/project_images/orlando_majestic_homepage.png"
     },
     {
         category: "Application Projects",
