@@ -201,20 +201,35 @@ section {
     background-color: #1f2937;
 
     & .about-content {
+        & h2:nth-child(1) {
+            text-align: center;
+        }
+
         & h2 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 2rem;
             color: white;
         }
 
-        & .about-text {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            line-height: 1.8;
-            color: #d1d5db;
+        & .about-image {
+            display: flex;
+            gap: 1rem;
+
+            & img {
+                width: 20rem;
+                object-fit: cover;
+            }
+
+            & .about-text {
+                font-size: clamp(1rem, 2vw, 1.2rem);
+                line-height: 1.8;
+                color: #d1d5db;
+                margin-top: 2rem;
+                text-align: justify;
+            }
         }
 
-        & .skills,
-        & .tools {
+        & .skills, & .tools {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
@@ -555,6 +570,14 @@ section {
         &::before {
             height: 50px;
             top: -50px;
+        }
+    }
+
+    #about .about-image {
+        flex-direction: column;
+
+        & .about-text {
+            margin-top: 0;
         }
     }
 
