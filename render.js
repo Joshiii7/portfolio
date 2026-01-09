@@ -116,6 +116,14 @@ const experiences = [
         skillArea: 'Web Development Education',
         description: 'Teaching web development part-time, mentoring students in modern web technologies and best practices.',
     },
+    {
+        id: 9,
+        position: 'Junior Web Developer',
+        event: 'REK Marketing & Design',
+        duration: 'January 2026 – Present',
+        skillArea: 'Web Development & SEO',
+        description: 'Working as a junior web developer, contributing to website development, SEO-focused implementations, and maintaining modern, responsive web solutions for clients.',
+    },
 ];
 
 const projects = [
