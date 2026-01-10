@@ -126,92 +126,87 @@ const experiences = [
     },
 ];
 
-const projects = [
+const applicationProjects = [
     {
-        category: "Application Projects",
         name: "Bislig City BPLS",
         description: "A web-based Business Permit and Licensing System designed for Bislig City to streamline business registration, permit processing, and status tracking with an intuitive administrative dashboard and reporting features.",
         tags: ["Angular", "Tailwind", "Laravel", "MySQL", "Chart.js", "API Integration"],
         image: "assets/images/project_images/bislig_city_bpls.png"
     },
     {
-        category: "Application Projects",
         name: "Bislig City Car Rental",
-        description: "An online car rental management system for Bislig City that handles vehicle listings, booking requests, rental scheduling, and administrative monitoring to ensure efficient fleet and customer management.",
+        description: "An online car rental management system for Bislig City that handles vehicle listings, booking requests, rental scheduling, and administrative monitoring.",
         tags: ["Angular", "Tailwind", "Laravel", "MySQL", "Chart.js", "API Integration"],
         image: "assets/images/project_images/bislig_city_car_rental.png"
     },
     {
-        category: "Application Projects",
         name: "ASCB Attendance & Payroll System",
-        description: "A comprehensive attendance and payroll system that automates employee time tracking, salary computation, and payroll reporting, improving accuracy and efficiency for institutional use.",
+        description: "A comprehensive attendance and payroll system that automates employee time tracking, salary computation, and payroll reporting.",
         tags: ["Angular", "Tailwind", "Laravel", "MySQL", "Chart.js", "API Integration"],
         image: "assets/images/project_images/ascb_attendance_and_payroll_system.png"
     },
     {
-        category: "Application Projects",
         name: "SH Merchantile Inventory System",
-        description: "An inventory management system built for SH Merchantile to monitor product stocks, manage sales and purchases, and generate real-time inventory reports for better business decision-making.",
+        description: "An inventory management system for monitoring stocks, managing sales and purchases, and generating real-time reports.",
         tags: ["PHP", "CSS", "JavaScript", "MySQL", "Chart.js"],
         image: "assets/images/project_images/sh_merchantile_inventory_system.png"
     },
     {
-        category: "Application Projects",
         name: "MIS Grading System",
-        description: "A Management Information System for academic grading that enables efficient grade encoding, student performance tracking, and data visualization through interactive reports and dashboards.",
+        description: "An academic grading system for efficient grade encoding and student performance tracking.",
         tags: ["Laravel", "Bootstrap 5", "Vite", "MySQL", "Chart.js"],
         image: "assets/images/project_images/mis_grading_system.png"
     },
     {
-        category: "Application Projects",
         name: "Orlando Majestic Rides",
-        description: "A premium luxury transportation website showcasing chauffeur-driven services, vehicle fleets, and seamless booking for airport transfers, events, and private travel.",
+        description: "A luxury transportation website showcasing chauffeur-driven services and seamless booking.",
         tags: ["HTML", "CSS", "Responsive"],
         image: "assets/images/project_images/orlando_majestic_homepage.png"
-    },
+    }
+];
+
+const jsProjects = [
     {
-        category: "JS Projects",
         name: "Weather Dashboard",
-        description: "Beautiful weather visualization app with location-based forecasts, interactive maps, and historical data analysis.",
+        description: "Weather visualization app with location-based forecasts and charts.",
         tags: ["React", "API Integration", "Chart.js"],
         image: "images/weather.png"
     },
     {
-        category: "Mini CSS Projects",
+        name: "Todo List App",
+        description: "Interactive todo list with local storage, filters, and drag-and-drop ordering.",
+        tags: ["JavaScript", "LocalStorage", "DOM"],
+        image: "images/todolist.png"
+    }
+];
+
+const miniCssProjects = [
+    {
         name: "Cube Rotation",
-        description: "Cube rotation using HTML and CSS only.",
+        description: "Cube rotation animation using HTML and CSS only.",
         tags: ["HTML", "CSS", "Animation"],
         image: "assets/images/project_images/cube_rotation.png"
     },
     {
-        category: "JS Projects",
-        name: "Todo List App",
-        description: "Interactive todo list with local storage support, category filters, and drag-and-drop ordering.",
-        tags: ["JavaScript", "LocalStorage", "DOM"],
-        image: "images/todolist.png"
-    },
-    {
-        category: "Mini CSS Projects",
         name: "Drip Effect",
-        description: "Drip effect using HTML and CSS only.",
+        description: "Drip animation created using pure HTML and CSS.",
         tags: ["HTML", "CSS", "Animation"],
         image: "assets/images/project_images/drip_effect.png"
     },
     {
-        category: "Mini CSS Projects",
         name: "Animated Traffic Light",
-        description: "Create Animated Traffic Light animation using CSS.",
+        description: "Traffic light animation built entirely with CSS.",
         tags: ["HTML", "CSS", "Animation"],
         image: "assets/images/project_images/animated_traffic_light.png"
     },
     {
-        category: "Mini CSS Projects",
         name: "Loading Animation",
-        description: "Create a loading animation using CSS.",
+        description: "Smooth loading animation using CSS only.",
         tags: ["HTML", "CSS", "Animation"],
         image: "assets/images/project_images/loading_animation.png"
-    },
+    }
 ];
+
 
 const renderSkills = () => {
     skillsContainer.innerHTML = technologies
@@ -274,46 +269,19 @@ const renderExperiences = () => {
 }
 
 // PROJECTS LOGIC
-let projectsExpanded = false;
+const renderProjectSection = (projects, containerId) => {
+    const container = document.getElementById(containerId);
 
-const getInitialProjectCount = () => {
-    if (window.innerWidth < 768) return 1;
-    if (window.innerWidth < 1024) return 2;
-    return 3;
-};
-
-let projectVisibleCount = getInitialProjectCount();
-
-const renderProjects = () => {
-    const visibleProjects = projectsExpanded
-        ? projects
-        : projects.slice(0, projectVisibleCount);
-
-    const categories = [...new Set(visibleProjects.map(p => p.category))];
-
-    projectsContainer.innerHTML = categories.map(category => {
-        const projectsInCategory = visibleProjects.filter(p => p.category === category);
-
-        return `
-            <div class="project-category">
-                <h3>${category}</h3>
-                <div class="category-column">
-                    ${projectsInCategory.map(p => `
-                        <div class="project-card">
-                            <img src="${p.image}" alt="${p.name}" class="project-image">
-                            <h3>${p.name}</h3>
-                            <p>${p.description}</p>
-                            <div class="project-tags">
-                                ${p.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
+    container.innerHTML = projects.map(p => `
+        <div class="project-card">
+            <img src="${p.image}" alt="${p.name}" class="project-image">
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <div class="project-tags">
+                ${p.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
             </div>
-        `;
-    }).join('');
-
-    toggleProjectsBtn.textContent = projectsExpanded ? 'Show less' : 'Show more';
+        </div>
+    `).join("");
 };
 
 // INIT
@@ -321,7 +289,11 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSkills();
     renderTools();
     renderExperiences();
-    renderProjects();
+    
+    renderProjectSection(applicationProjects, "applicationProjectsContainer");
+    renderProjectSection(jsProjects, "jsProjectsContainer");
+    renderProjectSection(miniCssProjects, "miniCssProjectsContainer");
+
 });
 
 window.addEventListener('resize', () => {
@@ -337,7 +309,7 @@ toggleExperienceBtn.addEventListener('click', () => {
     renderExperiences();
 });
 
-toggleProjectsBtn.addEventListener('click', () => {
-    projectsExpanded = !projectsExpanded;
-    renderProjects();
-});
+// toggleProjectsBtn.addEventListener('click', () => {
+//     projectsExpanded = !projectsExpanded;
+//     renderProjects();
+// });
