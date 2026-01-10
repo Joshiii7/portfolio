@@ -129,17 +129,45 @@ const experiences = [
 const projects = [
     {
         category: "Application Projects",
+        name: "Bislig City BPLS",
+        description: "A web-based Business Permit and Licensing System designed for Bislig City to streamline business registration, permit processing, and status tracking with an intuitive administrative dashboard and reporting features.",
+        tags: ["Angular", "Tailwind", "Laravel", "MySQL", "Chart.js", "API Integration"],
+        image: "assets/images/project_images/bislig_city_bpls.png"
+    },
+    {
+        category: "Application Projects",
+        name: "Bislig City Car Rental",
+        description: "An online car rental management system for Bislig City that handles vehicle listings, booking requests, rental scheduling, and administrative monitoring to ensure efficient fleet and customer management.",
+        tags: ["Angular", "Tailwind", "Laravel", "MySQL", "Chart.js", "API Integration"],
+        image: "assets/images/project_images/bislig_city_car_rental.png"
+    },
+    {
+        category: "Application Projects",
+        name: "ASCB Attendance & Payroll System",
+        description: "A comprehensive attendance and payroll system that automates employee time tracking, salary computation, and payroll reporting, improving accuracy and efficiency for institutional use.",
+        tags: ["Angular", "Tailwind", "Laravel", "MySQL", "Chart.js", "API Integration"],
+        image: "assets/images/project_images/ascb_attendance_and_payroll_system.png"
+    },
+    {
+        category: "Application Projects",
+        name: "SH Merchantile Inventory System",
+        description: "An inventory management system built for SH Merchantile to monitor product stocks, manage sales and purchases, and generate real-time inventory reports for better business decision-making.",
+        tags: ["PHP", "CSS", "JavaScript", "MySQL", "Chart.js"],
+        image: "assets/images/project_images/sh_merchantile_inventory_system.png"
+    },
+    {
+        category: "Application Projects",
+        name: "MIS Grading System",
+        description: "A Management Information System for academic grading that enables efficient grade encoding, student performance tracking, and data visualization through interactive reports and dashboards.",
+        tags: ["Laravel", "Bootstrap 5", "Vite", "MySQL", "Chart.js"],
+        image: "assets/images/project_images/mis_grading_system.png"
+    },
+    {
+        category: "Application Projects",
         name: "Orlando Majestic Rides",
         description: "A premium luxury transportation website showcasing chauffeur-driven services, vehicle fleets, and seamless booking for airport transfers, events, and private travel.",
         tags: ["HTML", "CSS", "Responsive"],
         image: "assets/images/project_images/orlando_majestic_homepage.png"
-    },
-    {
-        category: "Application Projects",
-        name: "Task Management App",
-        description: "Collaborative project management tool with real-time updates, team analytics, and intuitive drag-and-drop interface.",
-        tags: ["Vue.js", "Firebase", "Tailwind"],
-        image: "images/taskapp.png"
     },
     {
         category: "JS Projects",
