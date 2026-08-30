@@ -1,0 +1,37 @@
+{
+    "languages": [
+        { "name": "HTML5", "icon": "assets/svg/html-svgrepo-com.svg", "color": "#E34F26" },
+        { "name": "CSS", "icon": "assets/svg/css-3-svgrepo-com2.svg", "color": "#8315b6ff" },
+        { "name": "SCSS", "icon": "assets/svg/scss-svgrepo-com.svg", "color": "#CC6699" },
+        { "name": "JavaScript", "icon": "assets/svg/js-svgrepo-com.svg", "color": "#F7DF1E" },
+        { "name": "jQuery", "icon": "assets/svg/jquery-svgrepo-com.svg", "color": "#0769AD" },
+        { "name": "Tailwind CSS", "icon": "assets/svg/tailwind-svgrepo-com.svg", "color": "#38BDF8" },
+        { "name": "Bootstrap 5", "icon": "assets/svg/bootstrap-svgrepo-com.svg", "color": "#7952B3" },
+        { "name": "Angular", "icon": "assets/images/tech_stack_logos/gradient-icon---large.gif", "color": "#DD0031" },
+        { "name": "React", "icon": "assets/svg/react-svgrepo-com.svg", "color": "#61DAFB" },
+        { "name": "Vue.js", "icon": "assets/svg/vue-9-logo-svgrepo-com.svg", "color": "#42B883" },
+        { "name": "Next.js", "icon": "assets/svg/nextjs-svgrepo-com.svg", "color": "#ffffff" },
+        { "name": "Node.js", "icon": "assets/svg/nodejs-icon-svgrepo-com.svg", "color": "#339933" },
+        { "name": "Vite", "icon": "assets/svg/vite-svgrepo-com.svg", "color": "#646CFF" },
+        { "name": "PHP", "icon": "assets/svg/php-svgrepo-com.svg", "color": "#777BB4" },
+        { "name": "Laravel", "icon": "assets/svg/laravel-svgrepo-com.svg", "color": "#FF2D20" },
+        { "name": "Django", "icon": "assets/svg/djangoproject-svgrepo-com.svg", "color": "#06b874ff" },
+        { "name": "WordPress", "icon": "assets/svg/wordpress-svgrepo-com.svg", "color": "#f4f7f6ff" },
+        { "name": "Python", "icon": "assets/svg/python-svgrepo-com.svg", "color": "#3776AB" },
+        { "name": "TypeScript", "icon": "assets/svg/typescript-official-svgrepo-com.svg", "color": "#3178C6" },
+        { "name": "Java", "icon": "assets/svg/java-svgrepo-com.svg", "color": "#007396" },
+        { "name": "MySQL", "icon": "assets/svg/mysql-svgrepo-com.svg", "color": "#4479A1" },
+        { "name": "Sqlite3", "icon": "assets/svg/sqlite-svgrepo-com.svg", "color": "#0c71a0ff" },
+        { "name": "Firebase", "icon": "assets/svg/firebase-svgrepo-com.svg", "color": "#FFCA28" }
+    ],
+    "tools": [
+        { "name": "Git", "icon": "assets/svg/git-svgrepo-com.svg", "color": "#F05032" },
+        { "name": "VS Code", "icon": "assets/svg/vscode-svgrepo-com.svg", "color": "#007ACC" },
+        { "name": "MySQL Workbench", "icon": "assets/svg/mysql-svgrepo-com.svg", "color": "#4479A1" },
+        { "name": "Figma", "icon": "assets/svg/figma-svgrepo-com.svg", "color": "#F24E1E" },
+        { "name": "Photoshop", "icon": "assets/svg/adobe-photoshop-svgrepo-com.svg", "color": "#31A8FF" },
+        { "name": "Illustrator", "icon": "assets/svg/adobe-illustrator-svgrepo-com.svg", "color": "#FF9A00" },
+        { "name": "Adobe XD", "icon": "assets/svg/adobe-xd-svgrepo-com.svg", "color": "#FF61F6" },
+        { "name": "Indesign", "icon": "assets/svg/indesign-cc-logo-svgrepo-com.svg", "color": "#FF3366" }
+    ]
+}

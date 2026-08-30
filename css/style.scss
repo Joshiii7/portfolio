@@ -1,0 +1,1768 @@
+@use "sass/variables" as *;
+@use "sass/spacing" as *;
+@use "sass/utilities" as *;
+
+// ---------------------------------------------------------------------------
+// Base reset & typography
+// ---------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    // Tells the browser this page is dark-themed, so native UA-rendered
+    // widgets it doesn't hand off to author CSS, most importantly a <select>
+    // element's own options popup, use a dark palette instead of defaulting
+    // to the OS's light theme. Without this, a <select> can look correctly
+    // dark while closed (its own background/color are styled below) but pop
+    // open a plain white options list on click.
+    color-scheme: dark;
+    // Keeps any anchor-jump target (the skip link today, any future in-page
+    // anchor) clear of the fixed header instead of landing right underneath
+    // it. --header-height is measured live by main.js (syncHeaderHeight)
+    // since the mobile header's real height is now taller than desktop's
+    // (it's a stack of rows, not one line) and isn't a fixed constant; the
+    // $header-height fallback only matters for the instant before that JS
+    // runs.
+    scroll-padding-top: calc(var(--header-height, #{$header-height}) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    font-family: $font-body;
+    background-color: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: $font-heading;
+    color: var(--white);
+    line-height: 1.2;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+h3,
+h4 {
+    font-weight: 500;
+}
+
+main {
+    display: block;
+}
+
+// ---------------------------------------------------------------------------
+// Header & navigation
+// ---------------------------------------------------------------------------
+// Solid from first paint, not scroll-triggered: matches thegenieorlando's
+// header, which carries its background unconditionally rather than fading
+// in after a scroll threshold.
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(var(--navy-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: $container-max;
+    margin: 0 auto;
+    // padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 0.5rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    font-family: $font-heading;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    order: 2;
+}
+
+// Always-visible click-to-call pill, sitting between the logo and the
+// hamburger toggle on mobile (never hidden inside the collapsed menu), and
+// flowing to the end of the row next to the nav links on desktop.
+// Sized and spaced after thegenieorlando's header CTA (40px tall on mobile,
+// 50px at desktop, a comfortably wide button), kept in this portfolio's own
+// pill shape, accent color, and blur treatment rather than their square,
+// solid-blue button.
+.header-phone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+    min-width: 11rem;
+    min-height: 40px;
+    padding: 0.5rem 1.25rem;
+    border-radius: $radius-pill;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    text-decoration: none;
+    backdrop-filter: blur(12px);
+    background: rgba(var(--blue-rgb), 0.35);
+    transition: background 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+        background: rgba(var(--blue-rgb), 0.5);
+    }
+
+    @include bp($bp-md) {
+        order: 3;
+        min-height: 50px;
+    }
+}
+
+nav#mainNav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+
+    @include bp($bp-md) {
+        order: 2;
+    }
+}
+
+nav#mainNav ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+
+    li a {
+        color: var(--light-gray);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+        padding: 0.25rem 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--light-blue);
+            transition: width 0.3s ease;
+        }
+
+        &:hover,
+        &.active {
+            color: var(--light-blue);
+        }
+
+        &:hover::after,
+        &.active::after {
+            width: 100%;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Hero (home page only)
+// ---------------------------------------------------------------------------
+.hero {
+    position: relative;
+    min-height: 50dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--navy);
+    padding: 8rem 1.5rem 4rem;
+
+    canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .hero-inner {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+
+    // Single column (copy, then the form card below it) until there's room
+    // for the form to sit beside the copy instead of under it.
+    .hero-grid {
+        display: grid;
+        gap: 3rem;
+        align-items: center;
+        grid-template-columns: 1fr;
+
+        @include bp($bp-lg) {
+            grid-template-columns: 1.1fr 1fr;
+            text-align: left;
+        }
+    }
+
+    .hero-copy {
+        h1 {
+            font-size: clamp(2.25rem, 6vw, 4rem);
+            font-weight: 600;
+        }
+
+        p {
+            margin-top: 1rem;
+            font-size: 1.125rem;
+            color: var(--light-gray);
+            max-width: 640px;
+
+            @media (max-width: #{$bp-lg - 1px}) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+
+    .hero-actions {
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @include bp($bp-lg) {
+            justify-content: flex-start;
+        }
+
+        // .btn's own margin-top is meant for a button standing alone after a
+        // paragraph; here spacing already comes from this flex row's own
+        // margin-top and gap, so the per-button margin would only add to it.
+        .btn {
+            margin-top: 0;
+        }
+    }
+
+    // The hero's own lead-capture form: same fields/validation as the
+    // Contact page, kept visible without scrolling on first landing.
+    // Deliberately more compact than the Contact page's own form (smaller
+    // max-width, tighter field spacing, less padding, a shorter textarea) so
+    // it doesn't dominate the first screen someone sees.
+    .hero-form-card {
+        text-align: left;
+        max-width: 24rem;
+        margin: 0 auto;
+        padding: 1.5rem;
+
+        // A hover lift/shadow reads as an odd invitation to click when the
+        // "card" is actually a form people are about to type into.
+        &:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 0.85rem;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            padding: 0.6rem 0.85rem;
+            font-size: 0.95rem;
+        }
+
+        .form-textarea {
+            min-height: 80px;
+        }
+
+        .btn {
+            margin-top: 0.5rem;
+        }
+
+        .form-privacy {
+            margin-top: 0.75rem;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// About page bio block
+// ---------------------------------------------------------------------------
+.about-grid {
+    align-items: center;
+}
+
+.about-image img {
+    border-radius: $radius-lg;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-bio p {
+    color: var(--light-gray);
+    line-height: 1.8;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+
+    & + p {
+        margin-top: 1.25rem;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Page banner (interior pages: About, Services, Projects, Contact)
+// ---------------------------------------------------------------------------
+// Each interior page's banner carries a decorative illustration
+// (assets/images/banners/) behind the heading. The image sits at opacity
+// full-strength, but a scrim gradient on top of it (::before) guarantees the
+// heading stays readable regardless of what the artwork looks like
+// underneath, since every illustration is deliberately calm in the center
+// and only busy toward the left/right edges. object-fit: cover means a
+// narrow viewport crops those calmer edges first, never the empty center
+// where the text sits.
+.page-banner {
+    position: relative;
+    background-color: var(--slate);
+    padding: calc(var(--header-height, #{$header-height}) + 3rem) 1.5rem 3rem;
+    text-align: center;
+    overflow: hidden;
+
+    @include bp($bp-md) {
+        padding: calc(var(--header-height, #{$header-height}) + 4rem) 1.5rem 4rem;
+    }
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 0;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(31, 41, 55, 0.55), rgba(31, 41, 55, 0.88));
+        z-index: 0;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    h1 {
+        font-size: clamp(2.25rem, 5vw, 3.25rem);
+    }
+
+    p {
+        margin-top: 1rem;
+        color: var(--light-gray);
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+// FAQ section heading art: a smaller, less prominent version of the same
+// technique, scoped to just the section (not the whole page) since the FAQ
+// is one block among several, not a full banner.
+.section-heading-art {
+    position: relative;
+    overflow: hidden;
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 0;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.94));
+        z-index: 0;
+    }
+
+    &.bg-secondary::before {
+        background: linear-gradient(180deg, rgba(31, 41, 55, 0.75), rgba(31, 41, 55, 0.94));
+    }
+
+    > .container {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Services (service cards, teaser cards, process steps, FAQ)
+// ---------------------------------------------------------------------------
+// Centered, prominent icon badge: the icon is meant to be the first thing a
+// visitor notices, ahead of the title and description below it.
+.card-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    background: rgba(var(--blue-rgb), 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+
+    svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        color: var(--light-blue);
+        display: block;
+    }
+}
+
+.service-card,
+.value-item {
+    h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+        color: var(--white);
+    }
+
+    p {
+        color: var(--light-gray);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+.tech-subheading {
+    margin-top: 2rem;
+    margin-bottom: 0;
+    color: var(--light-blue);
+    font-size: 1.3rem;
+}
+
+// Bulleted list style used for "likely outcomes" write-ups on service
+// detail pages (services/<slug>.html).
+.service-outcomes {
+    margin-top: 1rem;
+    padding-left: 1.1rem;
+    text-align: left;
+    color: var(--light-gray);
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+// Small uppercase label above a heading, adding a level of hierarchy above
+// section-title/tech-subheading on service detail pages (services/<slug>.html):
+// page-banner -> eyebrow + heading -> content, rather than a heading alone.
+// Centered by default for full-width section headers; the left-aligned
+// contexts below (.service-overview__copy, .service-split) override it.
+.eyebrow {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--light-blue);
+    margin-bottom: 0.5rem;
+}
+
+// Service detail "Overview" section: the intro paragraph beside the
+// service's generated illustration, instead of stacking the image above the
+// write-up or beside the page heading.
+.service-overview {
+    align-items: center;
+
+    &__copy {
+        text-align: left;
+        color: var(--light-gray);
+
+        .eyebrow {
+            text-align: left;
+        }
+
+        // .tech-subheading's top margin exists to separate it from a
+        // paragraph above it elsewhere; here it's the first thing in the
+        // column after the eyebrow, so that gap would just read as
+        // unbalanced empty space.
+        h2.tech-subheading {
+            margin-top: 0;
+        }
+
+        p {
+            line-height: 1.7;
+        }
+    }
+}
+
+.service-illustration {
+    width: 100%;
+    border-radius: $radius-lg;
+}
+
+// Service detail "Outcomes" / "Best Suited For" two-column split: a
+// left-aligned exception to .grid's unopinionated default, same reasoning
+// as .service-overview__copy above (including the .tech-subheading override).
+.service-split {
+    text-align: left;
+
+    .eyebrow {
+        text-align: left;
+    }
+
+    h2.tech-subheading {
+        margin-top: 0;
+    }
+}
+
+.process-list {
+    list-style: none;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    counter-reset: process;
+}
+
+.process-step {
+    counter-increment: process;
+    position: relative;
+    padding-top: 3rem;
+
+    &::before {
+        content: counter(process);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: var(--blue);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-family: $font-heading;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        color: var(--light-gray);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// FAQ accordion (Home, Contact, Services). Built from real <button> triggers
+// rather than <details>/<summary> so aria-expanded/aria-controls can be set
+// explicitly and main.js can enforce "only one item open at a time."
+// ---------------------------------------------------------------------------
+.accordion {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.accordion-item {
+    background: var(--slate);
+    border: 1px solid rgba(var(--blue-rgb), 0.2);
+    border-radius: $radius-md;
+    overflow: hidden;
+}
+
+.accordion-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: $font-heading;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: left;
+    padding: 1.1rem 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--light-blue);
+    }
+}
+
+// Drawn as a plus/minus with two bars, rather than a single glyph, so the
+// expanded state is a distinct shape change, not just a rotated icon or a
+// color swap. The panel's own visibility is still the primary state cue;
+// this is a supporting one.
+.accordion-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: var(--light-blue);
+        transform: translate(-50%, -50%);
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    &::before {
+        width: 100%;
+        height: 2px;
+    }
+
+    &::after {
+        width: 2px;
+        height: 100%;
+    }
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-icon::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+// Height is animated to its real measured pixel value in main.js (a fixed
+// max-height cap can't be timed consistently since it always transitions
+// across the same distance no matter how short the actual content is, and
+// clips content that runs longer than the cap). Matches Bootstrap's own
+// .collapse timing (350ms, ease). The default open item's resting height is
+// set to `auto` in CSS alone, so it doesn't need JS to render correctly on
+// first paint.
+.accordion-panel {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+
+    &.is-open {
+        height: auto;
+    }
+
+    p {
+        color: var(--light-gray);
+        padding: 0 1.5rem 1.25rem;
+        line-height: 1.7;
+
+        a {
+            color: var(--light-blue);
+            text-decoration: underline;
+        }
+    }
+}
+
+// A near-zero duration, not `transition: none`, for .accordion-panel: main.js
+// swaps its height from a measured pixel value to `auto` on the transition's
+// `transitionend` event (see the comment above .accordion-panel), and a
+// transition of `none` never fires that event, leaving the panel pinned at
+// a stale pixel height instead of the `auto` it needs to reflow correctly
+// later (e.g. after a resize rewraps its text).
+@media (prefers-reduced-motion: reduce) {
+    .accordion-panel {
+        transition-duration: 0.001s;
+    }
+
+    .accordion-icon::before,
+    .accordion-icon::after {
+        transition: none;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Technology / tools icon grid (Services page)
+// ---------------------------------------------------------------------------
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.skill-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 8rem;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: $radius-lg;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    .glow {
+        position: absolute;
+        inset: 0;
+        border-radius: $radius-lg;
+        filter: blur(15px);
+        opacity: 0.15;
+        transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    &:hover .glow {
+        filter: blur(30px);
+        opacity: 0.7;
+    }
+
+    .content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        border-radius: $radius-lg;
+        backdrop-filter: blur(10px);
+        background-color: rgba(var(--black-rgb), 0.2);
+
+        img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-top: 0.5rem;
+            color: var(--white);
+            font-size: 0.875rem;
+            text-align: center;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Projects (case study cards)
+// ---------------------------------------------------------------------------
+.project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+
+    .project-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: $radius-md;
+        background-color: var(--navy);
+    }
+
+    h3 {
+        font-size: 1.35rem;
+        margin-top: 0.5rem;
+    }
+
+    > p {
+        color: var(--light-gray);
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+
+    .project-detail {
+        margin-top: 0.25rem;
+
+        .label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--light-blue);
+            margin-bottom: 0.15rem;
+        }
+
+        p {
+            margin: 0;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: auto;
+        padding-top: 0.5rem;
+    }
+
+    // "Read Full Case Study" / "View Live Demo": same frosted CTA treatment
+    // as the site's buttons, sized down to fit inside a compact card.
+    .project-links {
+        margin-top: 0.5rem;
+
+        a {
+            margin-top: 0;
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            min-height: 36px;
+            text-decoration: none;
+            color: var(--white);
+            backdrop-filter: blur(12px);
+            background: rgba(var(--white-rgb), 0.05);
+            transition: transform 0.3s ease, background 0.3s ease;
+
+            &:hover {
+                background: rgba(var(--white-rgb), 0.12);
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+    }
+}
+
+.project-group {
+    margin-bottom: 4rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    > h2 {
+        font-size: 1.5rem;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        font-family: $font-heading;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Experience & Background (About page): compact role cards for current
+// positions, plus a scannable badge row for competition/certification
+// history, replacing the old one-long-paragraph-per-entry timeline.
+// ---------------------------------------------------------------------------
+.role-card {
+    padding: 1.5rem;
+
+    &__title {
+        font-weight: 600;
+        color: var(--white);
+        font-size: 1.05rem;
+    }
+
+    &__org {
+        color: var(--light-blue);
+        font-size: 0.9rem;
+        margin-top: 0.35rem;
+    }
+
+    &__date {
+        color: var(--gray);
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.achievement-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 900px;
+    margin: 2.5rem auto 0;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--slate);
+        border: 1px solid rgba(var(--blue-rgb), 0.25);
+        border-radius: $radius-pill;
+        padding: 0.6rem 1.1rem;
+        font-size: 0.85rem;
+        color: var(--light-gray);
+    }
+
+    svg {
+        flex-shrink: 0;
+        width: 1.2rem;
+        height: 1.2rem;
+        color: var(--light-blue);
+    }
+
+    strong {
+        color: var(--white);
+        font-weight: 600;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// CTA band
+// ---------------------------------------------------------------------------
+.cta-band {
+    text-align: center;
+
+    h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: var(--light-gray);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        font-size: clamp(1rem, 2vw, 1.15rem);
+    }
+}
+
+// Pre-footer CTA row: the primary action button paired with a click-to-call
+// phone button, equal weight, centered, wrapping to a stacked column on
+// narrow mobile screens.
+.cta-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+
+    // The base .btn already spaces itself from the paragraph above via its
+    // own margin-top; inside this flex row that would stack on top of the
+    // row's own margin-top, so it's cancelled here (same fix as .hero-actions).
+    .btn {
+        margin-top: 0;
+    }
+}
+
+.btn-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        flex-shrink: 0;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Contact page
+// ---------------------------------------------------------------------------
+.contact-grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    align-items: start;
+
+    @include bp($bp-md) {
+        grid-template-columns: 1.4fr 1fr;
+    }
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+// Pairs shorter, compatible fields (Name + Email) side by side instead of
+// stacking every field in one long column. Single column below $bp-sm so
+// mobile always gets one readable field per row; each .form-group inside
+// keeps its own margin-bottom for the row-to-row rhythm below it.
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 1.5rem;
+
+    @include bp($bp-sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+}
+
+// Visible required-field marker. Purely decorative (the native `required`
+// attribute already carries the accessible semantics), so it's hidden from
+// assistive tech to avoid announcing "asterisk" on top of "required".
+.form-required {
+    color: var(--red);
+    margin-left: 0.25rem;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: $radius-sm;
+    border: 2px solid rgba(var(--white-rgb), 0.15);
+    background: rgba(var(--white-rgb), 0.05);
+    color: var(--white);
+    font-family: $font-body;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+
+    &::placeholder {
+        color: var(--gray);
+    }
+
+    &:focus {
+        border-color: var(--light-blue);
+        outline: none;
+    }
+
+    // Applied by main.js once a field has been touched: color is a
+    // secondary cue here, not the only one; the field's error message
+    // (or its absence) is what actually communicates pass/fail.
+    &.is-invalid {
+        border-color: var(--red);
+    }
+
+    &.is-valid {
+        border-color: var(--green);
+    }
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+// appearance: none drops the browser's own native dropdown arrow (which
+// doesn't reliably match a dark theme) in favor of this custom chevron;
+// color-scheme: dark (set on html) is what fixes the actual options popup,
+// this part only restyles the closed control itself.
+.form-select {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 1.1rem;
+    cursor: pointer;
+
+    &:hover {
+        border-color: rgba(var(--white-rgb), 0.3);
+    }
+
+    // The native options list can't be styled, but a dark <option>
+    // background with light text keeps it legible on browsers that respect
+    // these (Firefox, Chromium) instead of falling back to pure black-on-white.
+    option {
+        background: var(--slate);
+        color: var(--white);
+    }
+}
+
+.form-error {
+    color: var(--red);
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    display: none;
+
+    &.is-visible {
+        display: block;
+    }
+}
+
+.form-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: $radius-sm;
+    display: none;
+
+    &.is-visible {
+        display: block;
+    }
+
+    &.is-success {
+        background: rgba(var(--green-rgb), 0.15);
+        color: var(--green);
+        display: block;
+    }
+
+    &.is-error {
+        background: rgba(var(--red-rgb), 0.15);
+        color: var(--red);
+        display: block;
+    }
+}
+
+// Subtle privacy reassurance shown under every contact form.
+.form-privacy {
+    margin-top: 1.25rem;
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+// Left-aligned exception to .card's centered default: an icon/label/link
+// list reads better left-aligned than centered, same reasoning as
+// .project-card and .service-detail-card.
+.contact-info-card {
+    text-align: left;
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: var(--light-gray);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        list-style: none;
+        margin-top: 1.5rem;
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--light-blue);
+            text-decoration: none;
+            font-weight: 600;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Pricing page: one-time project cards, maintenance-plan cards, and the
+// monthly/annual billing toggle above them.
+// ---------------------------------------------------------------------------
+// The one-time pricing grid has 4 cards over a 3-column grid, so the 4th
+// sits alone in its own row at the $bp-lg+ breakpoint where grid-3 becomes
+// 3 columns. Placing it in the middle track (rather than defaulting to the
+// first, flush left) reads as centered instead of stranded.
+.pricing-grid--center-last {
+    @include bp($bp-lg) {
+        .pricing-card:last-child {
+            grid-column: 2;
+        }
+    }
+}
+
+.pricing-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &--featured {
+        border-color: rgba(var(--blue-rgb), 0.6);
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+.pricing-card__badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--blue);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.9rem;
+    border-radius: $radius-pill;
+    white-space: nowrap;
+}
+
+.pricing-card__name {
+    font-size: 1.2rem;
+    font-family: $font-heading;
+    color: var(--white);
+}
+
+.pricing-card__starting {
+    color: var(--gray);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.75rem;
+}
+
+.pricing-card__price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-top: 0.35rem;
+    font-family: $font-heading;
+
+    .currency {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--light-blue);
+    }
+}
+
+.pricing-card__amount {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.pricing-card__period {
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-top: 0.15rem;
+}
+
+.pricing-card__tagline {
+    color: var(--light-gray);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 0.85rem;
+}
+
+.pricing-card__divider {
+    border: none;
+    border-top: 1px solid rgba(var(--blue-rgb), 0.2);
+    margin: 1.25rem 0;
+}
+
+.pricing-card__features {
+    list-style: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    flex-grow: 1;
+
+    li {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 0.6rem;
+        color: var(--light-gray);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    svg {
+        flex-shrink: 0;
+        width: 1.1rem;
+        height: 1.1rem;
+        margin-top: 0.15rem;
+        color: var(--green);
+    }
+}
+
+.pricing-plans-note {
+    text-align: center;
+    color: var(--light-gray);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+
+    a {
+        color: var(--light-blue);
+        text-decoration: underline;
+    }
+}
+
+// Boundary/exclusion text on a one-time pricing card (what's NOT covered at
+// this starting price, or where the range can extend to), set apart from
+// the feature checklist with a divider so it doesn't read as another
+// included feature.
+.pricing-card__scope-note {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(var(--blue-rgb), 0.15);
+    color: var(--gray);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+// Standalone highlighted note, used for the "billed separately" disclaimer.
+.info-note {
+    max-width: 760px;
+    margin: 1.5rem auto 0;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(var(--blue-rgb), 0.25);
+    border-radius: $radius-md;
+    background: rgba(var(--blue-rgb), 0.08);
+    color: var(--light-gray);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+// Pill-shaped two-button toggle switching the maintenance cards between
+// monthly and annual pricing (see the "Pricing: billing toggle" block in
+// main.js). aria-pressed on each button carries the accessible state; the
+// active button's own filled background is a secondary, non-exclusive cue.
+.billing-toggle {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto 3rem;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    background: rgba(var(--white-rgb), 0.05);
+    border: 1px solid rgba(var(--blue-rgb), 0.25);
+    border-radius: $radius-pill;
+}
+
+.billing-toggle__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    background: none;
+    color: var(--light-gray);
+    font-family: $font-body;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.55rem 1.25rem;
+    border-radius: $radius-pill;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &.is-active {
+        background: var(--blue);
+        color: var(--white);
+    }
+}
+
+.billing-toggle__badge {
+    background: rgba(var(--green-rgb), 0.25);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: $radius-pill;
+}
+
+// ---------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------
+.site-footer {
+    background-color: var(--navy);
+    border-top: 1px solid rgba(var(--white-rgb), 0.08);
+    padding: 3rem 0 0;
+}
+
+.footer-content {
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+
+    @include bp($bp-md) {
+        grid-template-columns: 1.5fr 1fr 1fr;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        color: var(--white);
+    }
+
+    p {
+        color: var(--gray);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        max-width: 320px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        margin-bottom: 0.6rem;
+    }
+
+    a {
+        color: var(--gray);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: var(--light-blue);
+        }
+    }
+
+    .logo {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+    }
+}
+
+// Icon-only social links, sitting under the "Get in Touch" contact list.
+// Circular so they read as buttons distinct from the plain text links above
+// them, each carrying its own aria-label since there's no visible text.
+.social-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        background: rgba(var(--white-rgb), 0.08);
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: rgba(var(--blue-rgb), 0.3);
+        }
+    }
+
+    svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        display: block;
+    }
+}
+
+.footer-bottom {
+    margin-top: 2.5rem;
+    border-top: 1px solid rgba(var(--white-rgb), 0.08);
+    padding: 1.5rem;
+    text-align: center;
+
+    p {
+        color: var(--gray);
+        font-size: 0.85rem;
+    }
+}
+
+.footer-legal {
+    margin-top: 0.75rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+
+    a {
+        color: var(--gray);
+        font-size: 0.85rem;
+        text-decoration: none;
+
+        &:hover {
+            color: var(--light-blue);
+            text-decoration: underline;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Accessibility & Privacy Policy pages: plain prose content, reusing the
+// same page-banner + container shell as every other interior page.
+// ---------------------------------------------------------------------------
+.legal-content {
+    max-width: 760px;
+    margin: 0 auto;
+
+    h2 {
+        font-size: 1.4rem;
+        margin-top: 2.5rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    p,
+    li {
+        color: var(--light-gray);
+        line-height: 1.8;
+        font-size: 1rem;
+    }
+
+    p {
+        margin-top: 1rem;
+    }
+
+    ul {
+        margin-top: 1rem;
+        padding-left: 1.25rem;
+
+        li + li {
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+.legal-updated {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+// ---------------------------------------------------------------------------
+// Scroll-to-top button
+// ---------------------------------------------------------------------------
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(var(--blue-rgb), 0.35);
+    color: var(--white);
+    border: none;
+    border-radius: $radius-md;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0.4rem 0 0;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    z-index: 1000;
+    box-shadow: $shadow-soft;
+    transition: $transition-base;
+    opacity: 0.95;
+
+    img {
+        filter: brightness(0) invert(1);
+    }
+
+    span {
+        font-size: 0.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    &.is-visible {
+        display: flex;
+    }
+
+    &:hover {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Mobile navigation & small-screen overrides
+// ---------------------------------------------------------------------------
+@include bp($bp-md) {
+    // (desktop nav is the default; mobile overrides live below max-width block)
+}
+
+@media (max-width: #{$bp-md - 1px}) {
+    // Modeled directly on thegenieorlando's mobile header: logo, then the
+    // phone CTA, then a full-width menu toggle bar, each on its own centered
+    // row, rather than all three competing for space in a single line. This
+    // is deliberately a taller header on mobile than on desktop; that's why
+    // --header-height (set live by main.js, see syncHeaderHeight) drives the
+    // spacing below instead of the fixed $header-height constant, which
+    // only describes the single-row desktop header.
+    .header-content {
+        display: block;
+        text-align: center;
+    }
+
+    .logo {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    .header-phone {
+        display: flex;
+        width: fit-content;
+        margin: 0 auto 0.75rem;
+    }
+
+    // A bold, full-width, unmissable tap target, matching the reference's
+    // solid-color toggle bar rather than a small icon in the corner. Label
+    // text and bar shape both flip between the closed/open pairs below.
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.6rem;
+        width: 100%;
+        min-height: 44px;
+        padding: 0.6rem 1rem;
+        background: rgba(var(--blue-rgb), 0.35);
+        color: var(--white);
+        font-family: $font-body;
+        font-weight: 600;
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 1100;
+    }
+
+    .mobile-menu-btn__icon {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        width: 20px;
+        flex-shrink: 0;
+
+        span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: currentColor;
+            border-radius: 1px;
+            transition: transform 0.25s ease, opacity 0.2s ease;
+        }
+    }
+
+    // Hamburger morphs into an X, a clear, non-text-dependent open/close
+    // signal to pair with the "Menu" / "Close" label text swapped in main.js.
+    .mobile-menu-btn[aria-expanded="true"] .mobile-menu-btn__icon {
+        span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        span:nth-child(2) {
+            opacity: 0;
+        }
+
+        span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+    }
+
+    // A compact, content-sized dropdown that expands directly below the
+    // toggle bar, matching thegenieorlando's mobile menu (a Bootstrap-style
+    // collapse) rather than a full-screen fixed overlay. Since .site-header
+    // itself stays position:fixed, this still overlays the page while open,
+    // but only by as much height as the links need, not the whole viewport.
+    // Full width and centered text, same as the toggle bar above it, so
+    // nothing here can overlap the logo or run past the viewport edge.
+    nav#mainNav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin-top: 0.75rem;
+        transition: max-height 0.3s ease;
+
+        &.active {
+            max-height: 24rem;
+        }
+
+        ul {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.25rem;
+            width: 100%;
+            padding: 0.5rem 0 1.5rem;
+        }
+    }
+
+    .hero {
+        min-height: 80vh;
+        padding-top: calc(var(--header-height, #{$header-height}) + 2rem);
+    }
+
+    .footer-content p {
+        max-width: none;
+    }
+}
