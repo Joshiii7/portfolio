@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 440" role="img" aria-hidden="true">
+    <defs>
+        <linearGradient id="ms-bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0b1222"></stop>
+            <stop offset="1" stop-color="#16223d"></stop>
+        </linearGradient>
+        <linearGradient id="ms-panel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1f2937"></stop>
+            <stop offset="1" stop-color="#111827"></stop>
+        </linearGradient>
+        <linearGradient id="ms-accent" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0044ff"></stop>
+            <stop offset="1" stop-color="#22d3ee"></stop>
+        </linearGradient>
+        <radialGradient id="ms-glow-blue" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#0044ff" stop-opacity="0.32"></stop>
+            <stop offset="1" stop-color="#0044ff" stop-opacity="0"></stop>
+        </radialGradient>
+        <radialGradient id="ms-glow-cyan" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#22d3ee" stop-opacity="0.32"></stop>
+            <stop offset="1" stop-color="#22d3ee" stop-opacity="0"></stop>
+        </radialGradient>
+        <pattern id="ms-dots" width="26" height="26" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1.5" fill="#60a5fa" opacity="0.16"></circle>
+        </pattern>
+    </defs>
+
+    <rect width="600" height="440" rx="32" fill="url(#ms-bg)"></rect>
+    <rect width="600" height="440" rx="32" fill="url(#ms-dots)"></rect>
+    <circle cx="500" cy="90" r="150" fill="url(#ms-glow-cyan)"></circle>
+    <circle cx="100" cy="380" r="160" fill="url(#ms-glow-blue)"></circle>
+
+    <!-- Existing site being maintained -->
+    <rect x="96" y="94" width="312" height="224" rx="16" fill="url(#ms-panel)" stroke="#0044ff" stroke-opacity="0.45" stroke-width="2"></rect>
+    <circle cx="118" cy="116" r="4" fill="#f87171" opacity="0.85"></circle>
+    <circle cx="134" cy="116" r="4" fill="#facc15" opacity="0.85"></circle>
+    <circle cx="150" cy="116" r="4" fill="#4ade80" opacity="0.85"></circle>
+    <rect x="176" y="108" width="150" height="14" rx="7" fill="#0f172a" stroke="#334155" stroke-width="1"></rect>
+
+    <rect x="112" y="146" width="46" height="7" rx="3.5" fill="#60a5fa" opacity="0.8"></rect>
+    <rect x="166" y="146" width="30" height="7" rx="3.5" fill="#334155"></rect>
+    <rect x="204" y="146" width="30" height="7" rx="3.5" fill="#334155"></rect>
+
+    <!-- Content rows with "checked / updated" markers -->
+    <g>
+        <rect x="112" y="176" width="280" height="40" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"></rect>
+        <rect x="126" y="186" width="80" height="8" rx="4" fill="#22d3ee" opacity="0.7"></rect>
+        <rect x="126" y="200" width="140" height="6" rx="3" fill="#334155"></rect>
+        <circle cx="372" cy="196" r="10" fill="none" stroke="#4ade80" stroke-width="2"></circle>
+        <polyline points="367,196 371,200 378,191" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    </g>
+    <g>
+        <rect x="112" y="224" width="280" height="40" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"></rect>
+        <rect x="126" y="234" width="80" height="8" rx="4" fill="#0044ff" opacity="0.7"></rect>
+        <rect x="126" y="248" width="150" height="6" rx="3" fill="#334155"></rect>
+        <circle cx="372" cy="244" r="10" fill="none" stroke="#4ade80" stroke-width="2"></circle>
+        <polyline points="367,244 371,248 378,239" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    </g>
+    <g>
+        <rect x="112" y="272" width="280" height="34" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"></rect>
+        <rect x="126" y="280" width="80" height="8" rx="4" fill="#60a5fa" opacity="0.7"></rect>
+        <rect x="126" y="294" width="110" height="6" rx="3" fill="#334155"></rect>
+        <circle cx="372" cy="289" r="10" fill="none" stroke="#4ade80" stroke-width="2"></circle>
+        <polyline points="367,289 371,293 378,284" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    </g>
+
+    <!-- Gear (maintenance), overlapping bottom-left corner -->
+    <g transform="translate(128 322)">
+        <g fill="url(#ms-accent)">
+            <rect x="-5" y="-34" width="10" height="14" rx="2"></rect>
+            <rect x="-5" y="-34" width="10" height="14" rx="2" transform="rotate(45)"></rect>
+            <rect x="-5" y="-34" width="10" height="14" rx="2" transform="rotate(90)"></rect>
+            <rect x="-5" y="-34" width="10" height="14" rx="2" transform="rotate(135)"></rect>
+            <rect x="-5" y="-34" width="10" height="14" rx="2" transform="rotate(180)"></rect>
+            <rect x="-5" y="-34" width="10" height="14" rx="2" transform="rotate(225)"></rect>
+            <rect x="-5" y="-34" width="10" height="14" rx="2" transform="rotate(270)"></rect>
+            <rect x="-5" y="-34" width="10" height="14" rx="2" transform="rotate(315)"></rect>
+        </g>
+        <circle r="24" fill="url(#ms-accent)"></circle>
+        <circle r="10" fill="#111827"></circle>
+    </g>
+
+    <!-- Magnifying glass (SEO), overlapping top-right corner -->
+    <g transform="translate(392 118)">
+        <circle r="30" fill="#0f172a" stroke="url(#ms-accent)" stroke-width="7"></circle>
+        <line x1="21" y1="21" x2="46" y2="46" stroke="url(#ms-accent)" stroke-width="9" stroke-linecap="round"></line>
+        <polyline points="-14,6 -4,-10 6,-2 16,-16" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
+        <path d="M12 -16 L18 -18 L16 -12 Z" fill="#22d3ee"></path>
+    </g>
+
+    <!-- Floating ranking / uptrend card -->
+    <rect x="428" y="270" width="118" height="70" rx="12" fill="url(#ms-panel)" stroke="#22d3ee" stroke-opacity="0.5" stroke-width="2"></rect>
+    <polyline points="444,320 462,300 480,308 500,282 518,290" fill="none" stroke="url(#ms-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    <path d="M512 280 L522 278 L520 288 Z" fill="#22d3ee"></path>
+    <circle cx="444" cy="320" r="2.5" fill="#60a5fa"></circle>
+    <circle cx="480" cy="308" r="2.5" fill="#60a5fa"></circle>
+    <circle cx="518" cy="290" r="2.5" fill="#60a5fa"></circle>
+</svg>

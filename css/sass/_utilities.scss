@@ -1,0 +1,323 @@
+// Reusable utility classes shared across pages and components: layout
+// containers, buttons, cards, tags, grids, and accessibility helpers.
+@use "variables" as *;
+
+// Accessibility: visible keyboard focus ring everywhere.
+:focus-visible {
+    outline: 2px solid var(--light-blue);
+    outline-offset: 2px;
+}
+
+// Accessibility: skip-to-content link, hidden until keyboard-focused.
+// `translateY(-150%)` is relative to the link's OWN height, so it's always
+// fully off-screen no matter how big the link renders (a fixed negative
+// `top` offset previously left a sliver of it peeking in at the very top of
+// every page, since the link's real height was taller than that offset).
+// `position: fixed` (not absolute) keeps it pinned to the viewport itself,
+// so it lands fully on-screen when focused regardless of scroll position.
+.skip-link {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2000;
+    background: var(--blue);
+    color: var(--white);
+    padding: 0.75rem 1.25rem;
+    border-radius: $radius-sm;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: $shadow-soft;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+
+    &:focus {
+        transform: translateY(0);
+    }
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// Layout container. A single uniform max-width is used everywhere (header,
+// footer, and every section) so content lines up consistently across pages.
+.container {
+    max-width: $container-max;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bg-primary {
+    background-color: var(--navy);
+}
+
+.bg-secondary {
+    background-color: var(--slate);
+}
+
+// Flex helpers
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+// Responsive grids with a hard column cap per breakpoint. auto-fit/minmax
+// alone doesn't cap column count: on a wide viewport with enough items, it
+// packs in as many minmax-width columns as fit, which silently produced 4
+// columns in a ".grid-3" once a section held more than 3 cards. Explicit
+// column counts per breakpoint guarantee the stated column count regardless
+// of item count or container width.
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid-2 {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+
+    @include bp($bp-sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.grid-3 {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+
+    @include bp($bp-sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include bp($bp-lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.grid-4 {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+
+    @include bp($bp-sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include bp($bp-lg) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// Section heading pattern used at the top of most sections
+.section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+// Two-color heading treatment: wrap the key word/phrase of an <h2> in this
+// span so part of the heading reads in the brand accent color and the rest
+// stays the default heading color, e.g. <h2>What I <span class="heading-accent">Build</span></h2>.
+.heading-accent {
+    color: var(--light-blue);
+}
+
+.section-intro {
+    text-align: center;
+    color: var(--gray);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+}
+
+.section-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+// Buttons and CTA-style links.
+//
+// Base design standardized sitewide for every CTA button, "Get in Touch"
+// link, "Read Full Case Study" link, and similar action link: a frosted,
+// translucent block that reads consistently on the site's dark backgrounds.
+// .btn-primary and .btn-outline only vary the fill/border on top of this
+// shared base; every other property (padding, radius, weight, blur,
+// transition) stays identical across all CTAs.
+.btn {
+    margin-top: 1.5rem;
+    display: inline-block;
+    padding: 0.55rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--white);
+    backdrop-filter: blur(12px);
+    background: rgba(var(--white-rgb), 0.05);
+    transition: transform 0.3s ease, background 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: $font-body;
+    min-height: 44px;
+    text-align: center;
+
+    &:hover {
+        background: rgba(var(--white-rgb), 0.12);
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+// Primary: same frosted base, tinted with the brand accent so it reads as
+// the higher-priority action next to a .btn-outline secondary.
+.btn-primary {
+    background: rgba(var(--blue-rgb), 0.35);
+
+    &:hover {
+        background: rgba(var(--blue-rgb), 0.5);
+    }
+}
+
+// Secondary/outline: same frosted base, but bordered and unfilled.
+.btn-outline {
+    background: transparent;
+    border-color: rgba(var(--white-rgb), 0.25);
+
+    &:hover {
+        background: rgba(var(--white-rgb), 0.08);
+        border-color: rgba(var(--white-rgb), 0.5);
+    }
+}
+
+.btn-lg {
+    padding: 0.75rem 1.75rem;
+    font-size: 1.1rem;
+}
+
+.btn-sm {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    min-height: 36px;
+}
+
+// Full-width variant, layered on top of .btn's own padding/radius/hover/focus
+// styling rather than replacing it. Used for the submit button on the
+// Home-page hero form and the Contact page form, so it spans the same width
+// as the fields above it instead of sizing to its own text.
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+// Card base, reused by service, project, and value cards
+// Centered by default: icons, titles, descriptions, tags, and actions all
+// read as one balanced block. .project-card and .hero-form-card opt back out
+// to text-align: left (a project write-up and a form both read better
+// left-aligned), so don't remove those overrides when touching this rule.
+.card {
+    background: linear-gradient(180deg, var(--slate), var(--navy));
+    border: 2px solid rgba(var(--blue-rgb), 0.25);
+    border-radius: $radius-lg;
+    padding: 1.75rem;
+    transition: $transition-base;
+    height: 100%;
+    text-align: center;
+
+    &:hover {
+        border-color: rgba(var(--blue-rgb), 0.6);
+        transform: translateY(-6px);
+        box-shadow: $shadow-card-hover;
+    }
+}
+
+// Pill tag, used for tech/tool labels on project cards
+.tag {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: $radius-pill;
+    background: rgba(var(--blue-rgb), 0.25);
+    color: var(--pale-blue);
+    white-space: nowrap;
+}
+
+// Wraps a row of .tag pills, used on service detail pages to list the kinds
+// of clients a service is best suited for.
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+// Small icon sitting inline with text (e.g. next to a phone number wherever
+// it appears as a plain link rather than a button). Sized in em units so it
+// scales with whatever text size it's placed next to.
+.inline-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    margin-right: 0.35em;
+    flex-shrink: 0;
+}
+
+// Scroll-reveal animation, toggled by IntersectionObserver in main.js
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+
+    &.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -3,141 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal Portfolio webpage.">
+    <meta name="description" content="Joshi Adlawan, full-stack software developer building web, mobile, and desktop applications for businesses, institutions, and startups.">
     <meta name="author" content="Joshi Angelo Z. Adlawan">
-    <title>Joshi Adlawan</title>
-    
-    <link rel="stylesheet" href="styles.css">
-    
+    <title>Joshi Adlawan | Full-Stack Software Developer</title>
+    <link rel="canonical" href="https://YOUR-DOMAIN-HERE.com/">
+
+    <meta property="og:title" content="Joshi Adlawan | Full-Stack Software Developer">
+    <meta property="og:description" content="Joshi Adlawan, full-stack software developer building web, mobile, and desktop applications for businesses, institutions, and startups.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://YOUR-DOMAIN-HERE.com/">
+    <meta property="og:image" content="https://YOUR-DOMAIN-HERE.com/assets/images/my_image.jpg">
+    <meta property="og:site_name" content="Joshi Adlawan">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Joshi Adlawan | Full-Stack Software Developer">
+    <meta name="twitter:description" content="Joshi Adlawan, full-stack software developer building web, mobile, and desktop applications for businesses, institutions, and startups.">
+    <meta name="twitter:image" content="https://YOUR-DOMAIN-HERE.com/assets/images/my_image.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "name": "Joshi Angelo Adlawan",
+                "alternateName": "Joshi Adlawan",
+                "url": "https://YOUR-DOMAIN-HERE.com/",
+                "image": "https://YOUR-DOMAIN-HERE.com/assets/images/my_image.jpg",
+                "jobTitle": "Full-Stack Software Developer",
+                "email": "adlawanjoshiangelo@gmail.com",
+                "sameAs": ["https://github.com/Joshiii7"],
+                "worksFor": [
+                    { "@type": "Organization", "name": "Himugso Tech" },
+                    { "@type": "Organization", "name": "REK Marketing & Design" }
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "name": "Joshi Adlawan",
+                "url": "https://YOUR-DOMAIN-HERE.com/"
+            }
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <header>
+    <header class="site-header" id="siteHeader">
         <div class="header-content">
-            <a href="#hero" class="logo">@joshiangelo</a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">&#9776;</button>
-            <nav id="mainNav">
+            <a href="index.html" class="logo">@joshiangelo</a>
+            <a href="tel:+639382943739" class="header-phone"><svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span class="header-phone__label">+63 938 294 3739</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mainNav" aria-label="Open navigation menu">
+                <span class="mobile-menu-btn__label">Menu</span>
+                <span class="mobile-menu-btn__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <nav id="mainNav" aria-label="Primary">
                 <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services/">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="projects/">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="scrub-container">
-        
-        <section id="hero-section">
-            <canvas id="webCanvas"></canvas>
-            <div class="hero-inner">
-                <h2>Full Stack Developer</h2>
-                <p>Building fast, scalable, and user-friendly web apps</p>
-                <a href="#projects" class="hero-btn">View Projects</a>
-            </div>
-        </section>
-
-        <section id="hero"></section>
-
-        <section id="about">
-            <div class="content-wrapper">
-                <div class="about-content">
-                    <h2>About Me</h2>
-
-                    <div class="about-image">
-                        <img src="assets/images/my_background.png" alt="Joshi Angelo Adlawan">
-
-                        <div class="about-text">
-                            <p>My journey in development started with a love for design — creating visually appealing and user-friendly layouts always fascinated me. Life then led me to Web Development, where I discovered the power of turning ideas into interactive, functional web applications.</p>
-                            <p style="margin-top: 1rem;">Over time, I focused on mastering modern web technologies, building scalable, responsive, and user-centered projects that solve real problems while keeping the experience seamless and engaging.</p>
-                            <p style="margin-top: 1rem;">Combining my design sensibilities with strong technical skills allows me to craft web experiences that are not only functional but also beautiful, reflecting both creativity and precision in every project I undertake.</p>
+    <main id="main" tabindex="-1">
+        <section class="hero">
+            <canvas id="webCanvas" aria-hidden="true"></canvas>
+            <div class="hero-inner container">
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <h1>I Build Software That Solves Real Problems</h1>
+                        <p>Full-stack development for businesses, institutions, and startups, spanning web applications, mobile apps, and desktop software.</p>
+                        <div class="hero-actions">
+                            <a href="projects/" class="btn btn-primary">View My Work</a>
+                            <a href="tel:+639382943739" class="btn btn-outline btn-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +63 938 294 3739</a>
                         </div>
                     </div>
 
-                    <h2 style="margin-top: 3rem;">Technology Stack</h2>
+                    <div class="card hero-form-card">
+                        <h2>Start a Project</h2>
+                        <form id="contactForm" action="mailto:adlawanjoshiangelo@gmail.com" method="post" enctype="text/plain" novalidate>
+                            <div class="form-group">
+                                <label class="form-label" for="contactName">Name<span class="form-required" aria-hidden="true">*</span></label>
+                                <input class="form-input" type="text" id="contactName" name="Name" placeholder="Juan Dela Cruz" minlength="2" maxlength="100" required aria-describedby="contactNameError">
+                                <p class="form-error" id="contactNameError" role="alert"></p>
+                            </div>
 
-                    <!-- Technologies -->
-                    <h3 style="margin-top: 2rem;">Technologies</h3>
-                    <div class="skills" id="skillsContainer"></div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactEmail">Email<span class="form-required" aria-hidden="true">*</span></label>
+                                <input class="form-input" type="email" id="contactEmail" name="Email" placeholder="juan@email.com" required aria-describedby="contactEmailError">
+                                <p class="form-error" id="contactEmailError" role="alert"></p>
+                            </div>
 
-                    <!-- Tools & Editor -->
-                    <h3 style="margin-top: 2rem;">Tools & Editor</h3>
-                    <div class="skills" id="toolsContainer"></div>
-                </div>
-            </div>
-        </section>
+                            <div class="form-group">
+                                <label class="form-label" for="contactProjectType">Project Type<span class="form-required" aria-hidden="true">*</span></label>
+                                <select class="form-select" id="contactProjectType" name="Project Type" required aria-describedby="contactProjectTypeError">
+                                    <option value="" disabled selected>Select a project type</option>
+                                    <option value="Custom Software Application / Business System">Custom Software Application / Business System (Web, Mobile, or Desktop)</option>
+                                    <option value="Business or Marketing Website">Business or Marketing Website</option>
+                                    <option value="Front-End Development">Front-End Development</option>
+                                    <option value="Website Maintenance / SEO">Website Maintenance / SEO</option>
+                                    <option value="Not Sure Yet">Not Sure Yet</option>
+                                </select>
+                                <p class="form-error" id="contactProjectTypeError" role="alert"></p>
+                            </div>
 
-        <section id="experience">
-            <div class="content-wrapper">
-                <div class="experience-content">
-                    <h2>Experience</h2>
+                            <div class="form-group">
+                                <label class="form-label" for="contactMessage">Message<span class="form-required" aria-hidden="true">*</span></label>
+                                <textarea class="form-textarea" id="contactMessage" name="Message" placeholder="Tell me briefly about your project." minlength="10" maxlength="2000" required aria-describedby="contactMessageError"></textarea>
+                                <p class="form-error" id="contactMessageError" role="alert"></p>
+                            </div>
 
-                    <!-- dynamically rendered on js -->
-                    <div class="timeline" id="experienceContainer"></div>
-
-                    <button id="toggleExperience" class="show-more-btn">
-                        Show more
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <div class="content-wrapper">
-                <div class="projects-content">
-                    <h2>Featured Projects</h2>
-
-                    <!-- Application Projects -->
-                    <div class="project-group">
-                        <h3>Application Projects</h3>
-                        <div class="projects-grid" id="applicationProjectsContainer"></div>
-                    </div>
-
-                    <!-- JavaScript Projects -->
-                    <div class="project-group">
-                        <h3>JavaScript Projects</h3>
-                        <div class="projects-grid" id="jsProjectsContainer"></div>
-                    </div>
-
-                    <!-- Mini CSS Projects -->
-                    <div class="project-group">
-                        <h3>Mini CSS Projects</h3>
-                        <div class="projects-grid" id="miniCssProjectsContainer"></div>
-                    </div>
-                    
-                    <!-- <button id="toggleProjects" class="show-more-btn">
-                        Show more
-                    </button> -->
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="content-wrapper">
-                <div class="contact-content">
-                    <h2>Let's Connect</h2>
-                    <p>I'm always interested in hearing about new projects and opportunities.</p>
-                    <div class="contact-links">
-                        <a href="mailto:adlawanjoshiangelo@gmail.com" class="contact-link">Email Me</a>
-                        <a href="https://github.com/Joshiii7" target="_blank" class="contact-link">GitHub</a>
-                        <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn</a>
-                        <a href="https://twitter.com" target="_blank" class="contact-link">Twitter</a>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
+                            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                            <p class="form-privacy">Your information is secure and never shared.</p>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
-    
+
+        <section class="section-py bg-secondary reveal">
+            <div class="container">
+                <h2 class="section-title">What I <span class="heading-accent">Build</span></h2>
+                <p class="section-intro">Practical software development services, based on the kind of systems and applications I've actually built.</p>
+
+                <div class="grid grid-4" id="servicesContainer">
+                    <p>Loading services...</p>
+                </div>
+
+                <div class="section-cta">
+                    <a href="services/" class="btn btn-outline">See All Services</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-py reveal">
+            <div class="container">
+                <h2 class="section-title">Featured <span class="heading-accent">Projects</span></h2>
+                <p class="section-intro">A selection of capstone projects built to solve practical business and institutional challenges.</p>
+
+                <div class="grid grid-3" id="homeProjectsContainer">
+                    <p>Loading projects...</p>
+                </div>
+
+                <div class="section-cta">
+                    <a href="projects/" class="btn btn-outline">View All Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-py bg-secondary reveal">
+            <div class="container">
+                <h2 class="section-title">Why Work With <span class="heading-accent">Me</span></h2>
+
+                <div class="grid grid-3">
+                    <div class="card value-item">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="3" width="16" height="18" rx="1"></rect>
+                                <line x1="8" y1="7" x2="8" y2="7.01"></line>
+                                <line x1="12" y1="7" x2="12" y2="7.01"></line>
+                                <line x1="16" y1="7" x2="16" y2="7.01"></line>
+                                <line x1="8" y1="11" x2="8" y2="11.01"></line>
+                                <line x1="12" y1="11" x2="12" y2="11.01"></line>
+                                <line x1="16" y1="11" x2="16" y2="11.01"></line>
+                                <line x1="9" y1="21" x2="9" y2="16"></line>
+                                <line x1="15" y1="21" x2="15" y2="16"></line>
+                            </svg>
+                        </div>
+                        <h3>Real Systems, Real Organizations</h3>
+                        <p>The projects on this site are systems I've actually built and shipped for real organizations, not tutorials or templates.</p>
+                    </div>
+                    <div class="card value-item">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20h9"></path>
+                                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+                            </svg>
+                        </div>
+                        <h3>Design-Minded Development</h3>
+                        <p>My background is in design, so usability and visual polish are part of the build from day one, not an afterthought.</p>
+                    </div>
+                    <div class="card value-item">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <h3>Direct Communication</h3>
+                        <p>You work directly with me. No account managers, no hand-offs. I'm currently taking on new projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-py reveal section-heading-art">
+            <img class="section-heading-art__bg" src="assets/images/banners/banner-faq.svg" alt="" aria-hidden="true">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked <span class="heading-accent">Questions</span></h2>
+                <p class="section-intro">A few things people usually ask before starting a project.</p>
+
+                <div class="accordion" id="homeFaq">
+                    <div class="accordion-item">
+                        <h3>
+                            <button type="button" class="accordion-trigger" id="homeFaqQ1" aria-expanded="true" aria-controls="homeFaqP1">
+                                <span>What services do you offer?</span>
+                                <span class="accordion-icon" aria-hidden="true"></span>
+                            </button>
+                        </h3>
+                        <div class="accordion-panel is-open" id="homeFaqP1" role="region" aria-labelledby="homeFaqQ1" aria-hidden="false">
+                            <p>Custom software applications across web, mobile, and desktop, business websites, front-end development from an existing design, and ongoing website maintenance or SEO support.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3>
+                            <button type="button" class="accordion-trigger" id="homeFaqQ2" aria-expanded="false" aria-controls="homeFaqP2">
+                                <span>What does your project process look like?</span>
+                                <span class="accordion-icon" aria-hidden="true"></span>
+                            </button>
+                        </h3>
+                        <div class="accordion-panel" id="homeFaqP2" role="region" aria-labelledby="homeFaqQ2" aria-hidden="true">
+                            <p>It starts with a discovery call to understand what you need, then a clear scope and proposal, then the build with check-ins along the way, and finally a review before launch.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3>
+                            <button type="button" class="accordion-trigger" id="homeFaqQ3" aria-expanded="false" aria-controls="homeFaqP3">
+                                <span>How long does a typical project take?</span>
+                                <span class="accordion-icon" aria-hidden="true"></span>
+                            </button>
+                        </h3>
+                        <div class="accordion-panel" id="homeFaqP3" role="region" aria-labelledby="homeFaqQ3" aria-hidden="true">
+                            <p>It depends on the scope and complexity of what you need. Once we've talked through your project, I'll give you a realistic timeline before any work begins.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3>
+                            <button type="button" class="accordion-trigger" id="homeFaqQ4" aria-expanded="false" aria-controls="homeFaqP4">
+                                <span>How do I get started?</span>
+                                <span class="accordion-icon" aria-hidden="true"></span>
+                            </button>
+                        </h3>
+                        <div class="accordion-panel" id="homeFaqP4" role="region" aria-labelledby="homeFaqQ4" aria-hidden="true">
+                            <p>Send a message through the form above or the <a href="contact.html">contact page</a>, or call or text the number in the header. I'll follow up to set up a discovery call and go from there.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-py cta-band reveal">
+            <div class="container">
+                <h2>Have a Project in <span class="heading-accent">Mind?</span></h2>
+                <p>Tell me about it and I'll get back to you so we can talk through scope, timeline, and next steps.</p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary btn-lg">Start a Project</a>
+                    <a href="tel:+639382943739" class="btn btn-outline btn-lg btn-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +63 938 294 3739</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div>
+                <a href="index.html" class="logo">@joshiangelo</a>
+                <p>Full-stack software developer building custom web, mobile, and desktop applications.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/639382943739" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.29-.15-1.73-.85-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.14-.17.2-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.76-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.43 0 1.43 1.05 2.82 1.19 3.01.15.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.2-.55-.34ZM12.02 2C6.5 2 2.03 6.48 2.03 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.42A9.94 9.94 0 0 0 12.02 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.2c-1.68 0-3.24-.47-4.58-1.28l-.33-.2-3.02.87.87-2.94-.21-.34a8.2 8.2 0 0 1-1.29-4.31c0-4.53 3.69-8.2 8.2-8.2 4.53 0 8.2 3.68 8.2 8.2 0 4.53-3.68 8.2-8.2 8.2Z"></path></svg></a>
+                    <a href="https://www.facebook.com/joshi.adlawan/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+                    <a href="https://github.com/Joshiii7" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"></path></svg></a>
+                </div>
+            </div>
+            <nav aria-label="Footer">
+                <h3>Site</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services/">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="projects/">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div>
+                <h3>Get in Touch</h3>
+                <ul>
+                    <li><a href="mailto:adlawanjoshiangelo@gmail.com"><svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>adlawanjoshiangelo@gmail.com</a></li>
+                    <li><a href="tel:+639382943739"><svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>+63 938 294 3739</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Joshi Angelo Adlawan. All rights reserved.</p>
+            <nav class="footer-legal" aria-label="Legal">
+                <a href="accessibility.html">Accessibility</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </nav>
+        </div>
+    </footer>
+
     <button id="scrollToTopBtn" title="Scroll to top">
-        <img src="assets/svg/up-arrow-svgrepo-com.svg" alt="Up Arrow" width="20">
+        <img src="assets/svg/up-arrow-svgrepo-com.svg" alt="" width="18">
+        <span>Top</span>
     </button>
 
-    <script src="render.js"></script>
-    <script src="app.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/projects.js"></script>
 </body>
 </html>

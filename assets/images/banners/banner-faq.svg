@@ -1,0 +1,48 @@
+<svg viewBox="0 0 1600 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="55%" stop-color="#182234"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0044ff" stop-opacity="0.36"/>
+      <stop offset="100%" stop-color="#0044ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#60a5fa" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="500" fill="url(#bg)"/>
+  <rect width="1600" height="500" fill="url(#grid)"/>
+
+  <!-- Left motif: two overlapping soft dialogue shapes with a connecting line -->
+  <circle cx="260" cy="250" r="180" fill="url(#glowBlue)"/>
+  <g transform="translate(180,210)">
+    <rect x="0" y="0" width="150" height="100" rx="40" fill="#0044ff" fill-opacity="0.16" stroke="#93c5fd" stroke-opacity="0.65" stroke-width="1.4"/>
+    <circle cx="45" cy="50" r="6" fill="#93c5fd" fill-opacity="0.8"/>
+    <circle cx="75" cy="50" r="6" fill="#93c5fd" fill-opacity="0.55"/>
+    <circle cx="105" cy="50" r="6" fill="#93c5fd" fill-opacity="0.35"/>
+  </g>
+  <g transform="translate(70,300)">
+    <rect x="0" y="0" width="100" height="70" rx="30" fill="#f9fafb" fill-opacity="0.06" stroke="#60a5fa" stroke-opacity="0.4" stroke-width="1.2"/>
+  </g>
+  <path d="M170,300 C160,280 165,260 180,250" fill="none" stroke="#93c5fd" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="2 6"/>
+
+  <!-- Right motif: smaller mirrored dialogue pair -->
+  <circle cx="1380" cy="220" r="110" fill="url(#glowCyan)"/>
+  <g transform="translate(1330,180)">
+    <rect x="0" y="0" width="100" height="66" rx="28" fill="#f9fafb" fill-opacity="0.07" stroke="#60a5fa" stroke-opacity="0.45" stroke-width="1.2"/>
+    <circle cx="30" cy="33" r="4" fill="#93c5fd" fill-opacity="0.7"/>
+    <circle cx="50" cy="33" r="4" fill="#93c5fd" fill-opacity="0.5"/>
+    <circle cx="70" cy="33" r="4" fill="#93c5fd" fill-opacity="0.3"/>
+  </g>
+  <g transform="translate(1400,290)" opacity="0.85">
+    <rect x="0" y="0" width="60" height="42" rx="18" fill="#0044ff" fill-opacity="0.12" stroke="#93c5fd" stroke-opacity="0.4" stroke-width="1"/>
+  </g>
+</svg>

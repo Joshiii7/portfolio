@@ -1,0 +1,61 @@
+<svg viewBox="0 0 1600 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="55%" stop-color="#182234"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0044ff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0044ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#60a5fa" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="500" fill="url(#bg)"/>
+  <rect width="1600" height="500" fill="url(#grid)"/>
+
+  <!-- Left motif: orbiting rings around a core, three small glass tiles in orbit -->
+  <circle cx="270" cy="250" r="150" fill="url(#glowBlue)"/>
+  <g transform="translate(270,250)">
+    <circle r="34" fill="#0044ff" fill-opacity="0.18" stroke="#60a5fa" stroke-opacity="0.55" stroke-width="1.5"/>
+    <circle r="34" fill="none" stroke="#93c5fd" stroke-opacity="0.9" stroke-width="2"/>
+    <ellipse rx="150" ry="60" fill="none" stroke="#60a5fa" stroke-opacity="0.28" stroke-width="1.2" transform="rotate(-18)"/>
+    <ellipse rx="120" ry="120" fill="none" stroke="#22d3ee" stroke-opacity="0.22" stroke-width="1.2"/>
+    <ellipse rx="185" ry="80" fill="none" stroke="#60a5fa" stroke-opacity="0.16" stroke-width="1" transform="rotate(24)"/>
+
+    <g transform="rotate(-18) translate(150,0) rotate(18)">
+      <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#f9fafb" fill-opacity="0.12" stroke="#93c5fd" stroke-opacity="0.6" stroke-width="1.2"/>
+    </g>
+    <g transform="rotate(96) translate(120,0) rotate(-96)">
+      <rect x="-9" y="-9" width="18" height="18" rx="5" fill="#f9fafb" fill-opacity="0.1" stroke="#60a5fa" stroke-opacity="0.55" stroke-width="1.2"/>
+    </g>
+    <g transform="rotate(210) translate(185,0) rotate(-210)">
+      <circle r="8" fill="#22d3ee" fill-opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Right motif: smaller echo for balance -->
+  <circle cx="1370" cy="150" r="90" fill="url(#glowCyan)"/>
+  <g transform="translate(1370,150)" opacity="0.8">
+    <circle r="18" fill="none" stroke="#93c5fd" stroke-opacity="0.6" stroke-width="1.5"/>
+    <ellipse rx="70" ry="30" fill="none" stroke="#60a5fa" stroke-opacity="0.2" stroke-width="1" transform="rotate(14)"/>
+    <g transform="rotate(14) translate(70,0) rotate(-14)">
+      <rect x="-6" y="-6" width="12" height="12" rx="3" fill="#f9fafb" fill-opacity="0.12" stroke="#93c5fd" stroke-opacity="0.5" stroke-width="1"/>
+    </g>
+  </g>
+
+  <circle cx="1460" cy="380" r="70" fill="url(#glowBlue)" opacity="0.6"/>
+  <g transform="translate(1460,380)" opacity="0.7" filter="url(#soft)">
+    <circle r="30" fill="#0044ff" fill-opacity="0.15"/>
+  </g>
+</svg>

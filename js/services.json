@@ -1,0 +1,117 @@
+[
+    {
+        "id": "custom-software",
+        "icon": "dashboard",
+        "title": "Custom Software Applications & Business Systems",
+        "summary": "Software that replaces manual processes, whether that's a web-based system, a mobile app, or a desktop tool.",
+        "detail": "If your team is still running things on spreadsheets, paper forms, or a handful of tools that don't talk to each other, a purpose-built system can take that weight off your hands. I design and build web, mobile, and desktop software around how your business actually operates.",
+        "includes": [
+            { "icon": "checklist", "title": "Role-Based Access", "text": "Staff and admins see only what's relevant to their role, keeping data organized and secure." },
+            { "icon": "dashboard", "title": "Real-Time Dashboards", "text": "Reporting and charts that reflect current data, not a static export." },
+            { "icon": "layers", "title": "Status Tracking & Notifications", "text": "Records move through a clear process with visible status at every step." },
+            { "icon": "report", "title": "Exportable Reports", "text": "Printable or exportable reports for record-keeping and audits." }
+        ],
+        "relatedProjects": ["bislig-city-bpls", "ascb-attendance-payroll", "sh-merchantile-inventory"],
+        "outcomes": [
+            "Replace manual, paper-based, or spreadsheet-driven processes",
+            "Centralize data and reporting in one dashboard",
+            "Give your team a system built around how you actually work"
+        ],
+        "audience": [
+            "Local government & permitting offices",
+            "Schools & institutions",
+            "Retail & inventory-heavy businesses",
+            "Any team relying on spreadsheets or paper forms"
+        ],
+        "faqs": [
+            { "q": "What kind of business systems can you build?", "a": "Web, mobile, or desktop software for the kind of processes shown above: permit and licensing workflows, attendance and payroll, inventory management, and similar admin-heavy systems. If you're not sure your project fits, reach out and we can talk it through." },
+            { "q": "How long does a custom system take to build?", "a": "It depends on scope and complexity. Once we've talked through what you need, I'll give you a realistic timeline before any work begins." },
+            { "q": "Do I need to know exactly what I want before reaching out?", "a": "No. The discovery call is where we map out your current process and figure out what the system actually needs to do." }
+        ]
+    },
+    {
+        "id": "business-websites",
+        "icon": "browser",
+        "title": "Business & Marketing Websites",
+        "summary": "Responsive, fast-loading websites that give a business a professional online presence.",
+        "detail": "From single landing pages to full multi-page sites, built to represent a business well and work smoothly on any device.",
+        "includes": [
+            { "icon": "smartphone", "title": "Responsive on Every Device", "text": "Pages are built to adapt cleanly from a wide desktop screen down to a small phone, not just scaled down versions of a desktop layout." },
+            { "icon": "layout", "title": "Clear Structure & Navigation", "text": "Straightforward navigation and page structure make it easy for visitors to find what they need." },
+            { "icon": "zap", "title": "Built for Speed", "text": "Optimized SVG and WebP images and clean code keep pages loading quickly." },
+            { "icon": "mail", "title": "Direct Contact Options", "text": "A contact form or click-to-call option so visitors can reach you directly." }
+        ],
+        "outcomes": [
+            "A professional online presence that works on any device",
+            "Clear structure that makes it easy for visitors to find what they need",
+            "A site that's easy to hand off and maintain going forward"
+        ],
+        "audience": [
+            "Local businesses & shops",
+            "Professional service providers",
+            "Organizations needing a first website",
+            "Businesses replacing an outdated site"
+        ],
+        "faqs": [
+            { "q": "How many pages does a typical business website include?", "a": "It depends on the business, but most start with Home, About, Services, and Contact, and grow from there." },
+            { "q": "Can you work from an existing brand or logo?", "a": "Yes. If you already have branding, I'll build the site around it. If not, we can talk through what fits your business." },
+            { "q": "Will I be able to update the site myself later?", "a": "That depends on how the site is built and what you need going forward. We can talk through options during the discovery call." }
+        ]
+    },
+    {
+        "id": "frontend-development",
+        "icon": "code",
+        "title": "Front-End Development",
+        "summary": "Turning designs into clean, responsive interfaces using modern front-end frameworks.",
+        "detail": "Interfaces built with attention to performance, usability, and detail, using frameworks like React, Angular, or Vue depending on the project.",
+        "includes": [
+            { "icon": "code", "title": "Design-to-Code Implementation", "text": "Starting from a design file, wireframe, or a clear description of what the interface should do, and building it to match." },
+            { "icon": "layers", "title": "Component-Based Development", "text": "Interfaces built as reusable components with frameworks such as Angular, React, or Vue, depending on the project." },
+            { "icon": "smartphone", "title": "Responsive, Cross-Browser Testing", "text": "Interfaces checked across screen sizes and browsers so they hold up wherever they're viewed." },
+            { "icon": "layout", "title": "Structured, Accessible Markup", "text": "Semantic markup that holds up for screen readers and search engines alike." }
+        ],
+        "outcomes": [
+            "Designs implemented accurately, down to the details",
+            "Interfaces that hold up across screen sizes and browsers",
+            "Interactive front ends built with React, Angular, or Vue"
+        ],
+        "audience": [
+            "Teams with an existing design ready to build",
+            "Businesses adding pages or features to a live product",
+            "Designers & agencies needing implementation support"
+        ],
+        "faqs": [
+            { "q": "Do you design the interface, or just build it?", "a": "Both are possible. If you already have a design, I'll build it as-is. If not, we can talk through what you need before development starts." },
+            { "q": "Which frameworks do you work with?", "a": "Angular, React, or Vue, depending on what the project calls for." },
+            { "q": "Can you work within an existing codebase?", "a": "Yes. Adding pages or features to a product that's already live is common; I'll fit into the existing structure and conventions." }
+        ]
+    },
+    {
+        "id": "maintenance-seo",
+        "icon": "checklist",
+        "title": "Website Maintenance & SEO Support",
+        "summary": "Ongoing updates, fixes, and SEO-focused improvements for an existing site.",
+        "detail": "Regular updates and fixes, on-page SEO improvements, and a direct point of contact instead of a support queue, to help an existing site perform better and stay easy to manage.",
+        "includes": [
+            { "icon": "wrench", "title": "Regular Updates & Fixes", "text": "Content changes, small bugs, and broken links or images handled before they become visitor-facing problems." },
+            { "icon": "target", "title": "On-Page SEO Improvements", "text": "Meta descriptions, page titles, headings, and image alt text kept accurate so search engines can read the site properly." },
+            { "icon": "checklist", "title": "Accessibility & Performance Checks", "text": "Basic accessibility and performance checks to keep the site usable and fast." },
+            { "icon": "shield", "title": "Direct Monitoring & Support", "text": "A direct point of contact for questions or issues, instead of being routed through a support queue." }
+        ],
+        "outcomes": [
+            "Regular updates and fixes without the site going stale",
+            "On-page SEO improvements to help the site get found",
+            "A clear point of contact instead of a support queue"
+        ],
+        "audience": [
+            "Businesses with a site that's gone stale",
+            "Sites needing SEO fundamentals addressed",
+            "Owners who want a direct contact, not a ticket queue"
+        ],
+        "faqs": [
+            { "q": "Do you maintain sites you didn't originally build?", "a": "Yes, I take on maintenance, fixes, and improvements to existing sites, not just ones I built." },
+            { "q": "What counts as on-page SEO?", "a": "Things like page titles, meta descriptions, headings, image alt text, and overall site structure: the parts of SEO that live directly on your pages." },
+            { "q": "Is this a one-time fix or an ongoing service?", "a": "It can be either. Some sites need a one-time cleanup; others benefit from regular, ongoing updates. We can figure out what fits during a discovery call." }
+        ]
+    }
+]

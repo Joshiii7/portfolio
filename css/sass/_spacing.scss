@@ -1,0 +1,107 @@
+// Spacing scale and margin/padding/gap utility classes.
+// Naming follows <property><direction>-<size>, with <property><direction>-<breakpoint>-<size>
+// variants for md/lg. Generated with loops so the scale stays consistent and easy to extend.
+@use "sass:map";
+@use "variables" as *;
+
+$spacers: (
+    0: 0,
+    1: 0.5rem,
+    2: 1rem,
+    3: 1.5rem,
+    4: 2rem,
+    5: 3rem,
+    6: 4rem,
+    7: 5rem,
+    8: 6rem
+);
+
+@each $name, $value in $spacers {
+    .mt-#{$name} {
+        margin-top: $value !important;
+    }
+
+    .mb-#{$name} {
+        margin-bottom: $value !important;
+    }
+
+    .pt-#{$name} {
+        padding-top: $value !important;
+    }
+
+    .pb-#{$name} {
+        padding-bottom: $value !important;
+    }
+
+    .py-#{$name} {
+        padding-top: $value !important;
+        padding-bottom: $value !important;
+    }
+
+    .px-#{$name} {
+        padding-left: $value !important;
+        padding-right: $value !important;
+    }
+
+    .gap-#{$name} {
+        gap: $value !important;
+    }
+}
+
+@each $bp-name, $bp-value in ("md": $bp-md, "lg": $bp-lg) {
+    @include bp($bp-value) {
+        @each $name, $value in $spacers {
+            .mt-#{$bp-name}-#{$name} {
+                margin-top: $value !important;
+            }
+
+            .mb-#{$bp-name}-#{$name} {
+                margin-bottom: $value !important;
+            }
+
+            .pt-#{$bp-name}-#{$name} {
+                padding-top: $value !important;
+            }
+
+            .pb-#{$bp-name}-#{$name} {
+                padding-bottom: $value !important;
+            }
+
+            .py-#{$bp-name}-#{$name} {
+                padding-top: $value !important;
+                padding-bottom: $value !important;
+            }
+
+            .px-#{$bp-name}-#{$name} {
+                padding-left: $value !important;
+                padding-right: $value !important;
+            }
+
+            .gap-#{$bp-name}-#{$name} {
+                gap: $value !important;
+            }
+        }
+    }
+}
+
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+// Standard vertical rhythm for full-width page sections. Scales up on larger
+// viewports so sections feel generous on desktop without crowding mobile.
+.section-py {
+    padding-top: map.get($spacers, 6);
+    padding-bottom: map.get($spacers, 6);
+
+    @include bp($bp-md) {
+        padding-top: map.get($spacers, 7);
+        padding-bottom: map.get($spacers, 7);
+    }
+
+    @include bp($bp-lg) {
+        padding-top: map.get($spacers, 8);
+        padding-bottom: map.get($spacers, 8);
+    }
+}
